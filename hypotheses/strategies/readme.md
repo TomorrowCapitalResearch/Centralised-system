@@ -88,47 +88,7 @@ it only *helps a strategy* if the strategy's hold-out numbers improve, not just 
 
 
 
-| | discovery 2021–23 | hold-out 2024–26 | read |
-|---|---|---|---|
-| S1 touch rate vs null (k 1 / k 2) | 0.77 vs 0.79 / 0.64 vs 0.66 | 0.79 vs 0.79 / 0.66 vs 0.66 | the "recovery" is random-walk geometry |
-| S1 6 h excess, bottom 20 % vs top 20 % participation (k 1) | −3.8 vs +8.6 bp | −4.5 vs +4.9 bp | the reverse of the hypothesis, as edgelab found |
-| S1 trade cells net > 0 | 10 of 48 (the big ones on 4–86 fills) | 1 of 48 | |
-| S1 pick (n 15, k 2, bottom 10 %, maker, no stop) | Sharpe 1.28 on 30 trades | −1.01 on 232 trades | small-sample pick |
-| S1 with a 2σ stop, maker | win rate 73 % → 43 %, net +5.0 → −9.4 bp | 68 % → 46 %, −7.6 → −6.8 bp | book Sharpe −1.6 → −6.2 and −2.3 → −5.9 |
-| S2 rising/persistent up-push breaks, 4 h | +31 bp (z up to 2.3) | +3 bp (z 0.3) | faded |
-| S2 rising/persistent minus fading | 13 of 16 cells > 0, none t > 2 | 8 of 16 > 0 | no effect |
-| S3 trade cells net > 0 | 6 of 48, none t > 2 | 0 of 48 | |
-| S3 pick (1 h, w 50, k 3, exit at band) | Sharpe 1.04 | −0.98 | |
-| S4 phase cells with \|z\| > 2 | 1 of 120 | | chance alone gives ~6 |
 
-All four failed out of sample on crypto, both discovery picks reversed sign, and the stop made S1's book worse.
-
-## S1: thin-volume drops revert (FX, indices, commodities, bonds)
-
-20,000 to 580,000 drops per (n, k) cell and period (n = 5, 15, 60 minutes; k = 1, 2, 3 σ).
-
-| | discovery 2005–12 | hold-out 2013–20 |
-|---|---|---|
-| touch rate of the pre-drop price within 6 h, all drops (n 15, k 2) | 0.65 (null 0.65) | 0.64 (null 0.65) |
-| same, bottom 10 % participation | 0.65 (null 0.65) | 0.66 (null 0.66) |
-| 6 h excess return, bottom 10 % / all / top 10 % (n 15, k 2) | −0.6 / +1.3 / +1.3 bp | +2.3 / +0.2 / 0.0 bp |
-| event cells with 6 h excess z > 2 | 3 of 35 (two heavy, one thin) | 0 of 35 |
-| trade cells net > 0 after costs | 3 of 48 (best +0.8 bp) | **0 of 48** (−2.0 to −5.4 bp) |
-| best 10-slot book Sharpe | +0.11 | −0.40 |
-| discovery pick (n 15, k 3, bottom 10 %, taker, 2σ stop) | Sharpe 0.11 | −0.69 |
-| pick net per trade vs sign-flip null / random-entry twins | +0.8 vs −3.8 bp (z 1.7) / −4.0 bp | −2.9 vs −3.6 bp (z 0.5) / −3.5 bp |
-
-* Thin drops don't come back more often than a random walk with the same volatility. Touch rates match the null to
-  the percentage point in every bucket. 5-minute drops touch back slightly *more* often than the null (0.78 vs 0.77,
-  z 3–4: one-minute quote noise); 15–60-minute drops slightly *less* often (z −2.5 to −5.4: short-term continuation).
-* Excess returns after drops are mostly 0–3 bp at 6 h. The largest, after thin commodity drops in the hold-out
-  (+6 bp, t 2.7; +3 bp, t 0.7 in discovery), is smaller than a commodity round trip (6–20 bp). Index 3σ drops kept
-  falling in the hold-out (−2.8 bp at 6 h, t −2.3).
-* **Stops helped here, which is what the theory predicts for these markets.** A 1–2σ stop beat no stop in 28 of 32
-  matched cells in discovery and 31 of 32 in the hold-out (net −3.5 vs −4.4 bp per trade, win rate 30 % vs 58 %),
-  because 15–60-minute drops on these markets tend to keep going for a while (touch rates below the null). A stop
-  adds value when moves persist, which is exactly when a reversion trade is wrong. It made a losing trade lose less;
-  nothing turned positive.
 
 ## S2: pushes into a level on rising or persistent volume (4-hour return in the push direction)
 
@@ -311,34 +271,6 @@ bounce at the projected next level?), and as strategies (`extrema_bounce`, `segm
 structure state. Reproduce everything with `notebooks/05_cascading_extrema.ipynb`. The executed copy on your
 BTC/ETH data is `notebooks/executed/05_cascading_extrema_your_btc_eth.ipynb`.
 
-## Your round 01 (v1.0.2, notebook 03, BTC / ETH / SOL, 15-minute strategies)
-
-| | train | validation | test |
-|---|---:|---:|---:|
-| routed policy (every state OFF) | 0 trades | 0 trades | 0 trades |
-| unfiltered `trend_follow` 16/64, 15 min: Sharpe | −0.65 | −2.66 | −0.55 |
-| trades / net per trade | 1,425 / −7.4 bp | 477 / −27.1 bp | 476 / −5.6 bp |
-| total return / max drawdown | −10.7 % / −18.8 % | −12.3 % / −14.3 % | −2.9 % / −10.5 % |
-| mean daily return, 95 % block-bootstrap interval | −0.018 % (−0.061, +0.020) | −0.067 % (−0.122, −0.013) | −0.014 % (−0.076, +0.060) |
-
-No strategy/state cell met the training bar (≥ 30 accepted trades, positive net, positive Sharpe), so the
-policy turned everything off. That was the correct outcome. The unfiltered baseline lost in all three periods, and
-in validation the interval excludes zero. Taker fees alone came to $2,458 in training, more than twice the
-$1,068 loss. The 15-minute variants trade too often for 9 bp taker + 2 bp spread. The same trend rule on
-hourly bars trades about a sixth as often (below).
-
-## Data used here
-
-* **Your BTCUSDT and ETHUSDT, 2024-01 → 2026-09.** The close path was rebuilt exactly from the hourly log
-  returns in the two round-01 `*_regimes.csv` files. The starting price is approximate and only rescales levels.
-  There are no wicks or volume, so limit fills are conservative and the maker volume cap is off. Frozen dates:
-  train 2024-01-08 → 2025-08-10, validation → 2026-02-19, test → 2026-09-01.
-  SOLUSDT was not included (no regimes CSV attached).
-* **Bitstamp BTC/USD, 2012-01 → 2018-01**, hourly from minute bars. edgelab never used these data.
-  Train 2012-01-31 → 2015-08-24, validation → 2016-10-30, test → 2018-01-08.
-* **Account:** $10,000, 10 slots, costs 0 bp maker / 9 bp taker / 2 bp spread, limits must trade 5 bp through.
-  Structure: pivot_k 2, min_pct 2 %, slope window 7 days, slope cut 1, min segment 12 hours. These were fixed
-  before any run.
 
 ## 1. Do new global lows step down by a regular %? Mostly no
 
@@ -362,93 +294,4 @@ rebounded theta before falling another theta. A random walk gives 0.5. Null = 30
   same steps, so neither direction can be a rule. The largest gap is ETH at 5 % (z −1.9, 12 legs), and that one
   is a failure to bounce. With ~40 statistics per market, one |z| near 2–3 is expected by chance.
 
-## 2. The structure states describe the chart; they barely predict it
-
-* **Time shares:** flat 51–57 %, up 12–17 %, down ~8 %, near ATH 7–16 %, falling legs 2–11 %, transitions 1–4 %.
-* **Spell length** on your data: down ~9–13 h, up ~11–16 h, flat ~26–34 h, falling legs ~25–60 h.
-* **Next-24-hour return by state** (notebook §2) changes sign between periods: BTC falling legs +102 bp
-  (train), −66 bp (validation), +73 bp (test). Only BTC down-segments were negative in all three periods
-  (−38, −16, −54 bp). Those come from overlapping 24-hour windows and ~10-hour spells, so this is a lead, not a
-  signal.
-
-## 3. The strategies on their own (Sharpe train / validation / test, trades)
-
-| strategy | your BTC+ETH 2024–26 | trades | Bitstamp BTC 2012–18 | trades |
-|---|---|---|---|---|
-| `extrema_bounce` 3 % below the broken low | −0.25 / −1.58 / −0.42 | 20 / 10 / 2 | −1.31 / – / −1.43 | 17 / 0 / 8 |
-| `extrema_bounce` 5 % | −0.72 / −2.80 / +0.04 | 15 / 8 / 2 | −0.58 / – / +0.29 | 16 / 0 / 11 |
-| `extrema_bounce` 8 % | −1.99 / −1.99 / −1.37 | 11 / 6 / 1 | −0.41 / – / +0.03 | 15 / 0 / 8 |
-| `extrema_bounce` 12 % | +0.10 / −1.58 / +1.02 | 10 / 5 / 1 | +0.74 / – / +1.48 | 15 / 0 / 5 |
-| `segment_band` k 2, all slopes | −1.43 / −2.48 / −2.44 | 138 / 47 / 46 | −1.13 / −1.48 / −1.55 | 232 / 53 / 35 |
-| `segment_band` k 2, flat segments only | −1.50 / −1.68 / −0.92 | 112 / 37 / 37 | −0.98 / −1.45 / −1.37 | 203 / 41 / 32 |
-| `trend_follow` 16/64, hourly | **+1.01 / −0.40 / +0.17** | 238 / 70 / 79 | **+1.37 / +0.96 / +3.05** | 303 / 107 / 105 |
-| `mean_reversion` w 32 k 2, hourly | −0.02 / −2.96 / −1.58 | 451 / 153 / 141 | −1.36 / −2.49 / −1.32 | 530 / 133 / 164 |
-
-* **The standard-deviation play inside stable segments lost in all 12 cells** after costs, including flat
-  segments only.
-* **`extrema_bounce`** trades rarely (0–20 times per period) and mostly loses. The 12 % step was positive in
-  training and test on Bitstamp, on 15 and 5 trades. Bitstamp's validation period had no new lows at all.
-  That is far too few trades to act on.
-* **Hourly trend following** is the only rule with a consistent sign on old BTC. On your 2024–26 data it made
-  money in training and roughly nothing afterwards.
-
-## 4. Routing by structure state does not beat the plain trend
-
-Training picks one variant per state (or OFF). Validation and test replay that frozen map in one account.
-
-| Sharpe | train | validation | test |
-|---|---:|---:|---:|
-| your BTC+ETH: routed / trend alone | 1.95 / 1.01 | **−1.44 / −0.40** | 0.30 / 0.17 |
-| Bitstamp: routed / trend alone | 1.46 / 1.37 | **−0.22 / +0.96** | 3.38 / 3.05 |
-
-Frozen maps — your data: down → `segment_band` k 1.5; falling → `mean_reversion` k 2; flat, near ATH and
-transition → `trend_follow` 16; up → `mean_reversion` k 2. Bitstamp: down → `segment_band` k 1.5; flat and
-near ATH → `trend_follow` 16; up → `trend_follow` 8; falling and transition → OFF. The training gain is what
-any selection produces. In validation, routing lost to the plain trend in both markets.
-
-## 5. Your map, declared before it was run (nothing fitted)
-
-| Sharpe train / validation / test | your BTC+ETH | Bitstamp |
-|---|---|---|
-| trend only in up / near-ATH structure | 0.81 / −0.95 / −1.78 | 1.34 / −0.15 / 2.66 |
-| structure map: trend in up / near ATH, band in flat, bounce bid in falling legs, nothing in down | −0.22 / −2.90 / −1.85 | 0.73 / −0.84 / 1.78 |
-| trend alone, for comparison | 1.01 / −0.40 / 0.17 | 1.37 / 0.96 / 3.05 |
-
-Both maps are worse than the plain trend in every period, on both datasets. Keeping trend entries only for
-up-structure drops the entries that start new trends (out of flat segments and falling legs) and keeps the
-late ones.
-
-## What this means
-
-1. The cascade labels the chart the way you described it, using only past data, and it is ready as a regime
-   axis or a risk context. On these data it carries no information that improves the trades.
-2. "Each new bottom a solid % lower" did not survive the random-walk comparison on 2024–26. The bounce at the
-   projected level is a coin flip within noise. Swing highs (your "similar behaviour for the local highs") do
-   not step down systematically either. The median step between successive confirmed swing highs in training
-   is +0.6 % for BTC (62 swings) and −0.4 % for ETH (68).
-3. Mean reversion to the segment's own mean ± k·sd loses after costs, in all slopes and in flat segments.
-4. The only consistent result is hourly trend following on BTC 2012–18. On your recent data it is weak, so it is
-   not yet a dependable edge either.
-
-## Next round: declare these before running
-
-* Run notebook 05 on your archive with `REPLAY_TIMEFRAME = "1h"`, so real highs and lows decide the
-  `extrema_bounce` fills, and include SOLUSDT. Change nothing else.
-* **Support for the level idea:** bounce above the null with z > 2 in training for both BTC and ETH, the same
-  sign in validation, and ≥ 20 legs pooled.
-* **Support for routing:** validation Sharpe of the routed account above the train-selected unfiltered
-  baseline, and test not worse. No change after reading validation.
-* **Truly fresh data** is only what comes after 2026-09-01 (paper trading).
-
-## Caveats
-
-* 2024–26 has been inspected in earlier rounds (edgelab, round 01). It is a research period, not a hold-out.
-* "ATH" means the highest close in the loaded history, which starts in January 2024. For ETH that is not the
-  2021 high, so its cycles before the real new high of August 2025 are cycles of a 2024 high. Loading earlier
-  history (your Binance archive back to 2017–2020) changes those cycles. Do that before reading the level
-  statistics as ETH's own.
-* Close-only reconstruction: no wicks, no volume. Real hourly bars will fill more limit orders.
-* Bitstamp 2012–15 spreads were wider than the 2 bp assumed, and its volume is a placeholder.
-* `extrema_bounce` and the bounce statistics rest on 1–20 events per cell.
-* Many statistics were computed. Read the pattern across markets and periods, not single cells.
 
