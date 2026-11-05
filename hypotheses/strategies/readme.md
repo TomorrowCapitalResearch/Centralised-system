@@ -14,23 +14,23 @@ Slow long/flat allocation. Trend and regime positioning over hours to days acros
 | Family | description | Supplied evidence | Decision |
 |---|---|---|---|
 | BTC → altcoin minute lead–lag | x | x | x |
+| lead–lag | leader (EUR/USD for FX, S&P 500 for indices, US 10Y for bonds) makes a ≥ 3σ minute the follower has not matched by 2σ of its beta-implied move; taker, 15 min | 15-minute follower return above null and net > 0 after costs |
 | Thin-volume drop reversion | x | x | x |
 | Generic sigma-band fades | x | x | x |
 | ETH wick ladder | x | x | x |
+| wick ladder | one resting bid m × 1-minute σ below the last close (m = 8, 12, 16), target the pre-wick close, 1 h or 4 h limit, no bid in a minute after the leader fell ≥ 3σ | discovery pick net > 0 with t > 2 and z > 2 vs null; same sign in hold-out; positive in most of the grid |
 | Acceleration/participation continuation | x | x | x |
 | Hourly trend | x | x | x |
+| trend | daily MA / time-series momentum (28, 56, 112 days), optional efficiency ratio > 0.2, inverse-vol weights, long-only and long/short | Sharpe above buy & hold in both periods, a broad block of lookbacks |
+| cross-sectional momentum | top 3 by 28/56-day return, raw and risk-adjusted, optional efficiency filter | beats equal-weight buy & hold in both periods |
 | Structure-based routing | x | x | x |
 | Old Bitstamp liquidity provision | x | x | x |
 | Thin-volume drops revert | x | x | x |
 | High-volume drops revert | x | x | x |
+| heavy-participation bounce | ≥ 3 or 4 σ 5-minute drop, participation in the top third, maker bid at the event close, target the pre-move price, 4 h | 60-minute return and trade net above null (z > 2) in both periods |
 | Pushes into a level with rising or persistent volume | x | x | x |
 | σ-band fades ("2 sigma") | buying 2–3 σ below the rolling norm and selling above it pays.|  x | x |
 | ATH → global min → local max → local min | map the all-time high, the minimum since it (global min), the maximum since that (local max) and the minimum since that (local min, merging into the global min if broken); inside these periods behaviour repeats, and σ-band / stability entries work better once the slope has stopped falling. |  x | x |
-| A1 wick ladder | one resting bid m × 1-minute σ below the last close (m = 8, 12, 16), target the pre-wick close, 1 h or 4 h limit, no bid in a minute after the leader fell ≥ 3σ | discovery pick net > 0 with t > 2 and z > 2 vs null; same sign in hold-out; positive in most of the grid |
-| A2 heavy-participation bounce | ≥ 3 or 4 σ 5-minute drop, participation in the top third, maker bid at the event close, target the pre-move price, 4 h | 60-minute return and trade net above null (z > 2) in both periods |
-| A3 lead–lag | leader (EUR/USD for FX, S&P 500 for indices, US 10Y for bonds) makes a ≥ 3σ minute the follower has not matched by 2σ of its beta-implied move; taker, 15 min | 15-minute follower return above null and net > 0 after costs |
-| A4 trend | daily MA / time-series momentum (28, 56, 112 days), optional efficiency ratio > 0.2, inverse-vol weights, long-only and long/short | Sharpe above buy & hold in both periods, a broad block of lookbacks |
-| A5 cross-sectional momentum | top 3 by 28/56-day return, raw and risk-adjusted, optional efficiency filter | beats equal-weight buy & hold in both periods |
 
 
 
