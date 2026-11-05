@@ -1,9 +1,6 @@
 
-# Market state, inventory state and strategies for Revolut X
 
-Assessment dated 4 November 2026. The results support building a state-aware execution and inventory system. They do not yet identify a contemporary Revolut X strategy with demonstrated positive expected net return. The attached reports have been reviewed as reported evidence; the underlying backtest source and full candle archive are absent, so those results have not been independently reproduced here.
 
-## Evidence that changes the decision
 
 | Family | Supplied evidence | Decision |
 |---|---|---|
