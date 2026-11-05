@@ -9,7 +9,9 @@ revolut
 Two-sided quoting on wide-spread pairs. Quote both sides and shift quotes down as inventory builds, with inventory running from zero to a cap. A taker paying 0.09% only profits from hitting a quote that is stale by more than that, which gives a slow maker some cover. It lives or dies on captured spread minus markout, per pair.
 Slow long/flat allocation. Trend and regime positioning over hours to days across your top-30 universe, rebalanced with resting orders. Moves are measured in percent, so fees stop mattering; the hard parts are statistical power and that every position is the same BTC-beta bet.
 
-
+Candidate	Initial rule	Why test it
+Slow trend, long/cash	On completed hourly bars, hold a long target when SMA(16) exceeds SMA(64) and price exceeds SMA(64); otherwise target cash.	A simple benchmark with scope for less turnover.
+Passive reference reversion	Rest a bid below a fresh, currency-matched external reference adjusted for normal venue differences; sell filled inventory toward the reference, with predefined risk/time exits.	Tests whether Revolut X’s maker pricing can support an actual execution edge.
 
 | Family | description | Supplied evidence | Decision |
 |---|---|---|---|
