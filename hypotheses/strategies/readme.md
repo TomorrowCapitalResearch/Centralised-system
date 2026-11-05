@@ -1,4 +1,7 @@
-
+Passive dislocation capture. This is LiqGapMR’s idea with a resting entry instead of a market buy. Keep post-only bids a set distance below a reference price (your Binance feed, or the index price the ticker returns) and re-centre them with replace. Fills happen only when Revolut X trades at a discount to the wider market, with no fee and no reaction race. The main risk is a market-wide drop filling every bid at once, so cap total exposure; this is also where a regime gate would pay for itself. 
+revolut
+Two-sided quoting on wide-spread pairs. Quote both sides and shift quotes down as inventory builds, with inventory running from zero to a cap. A taker paying 0.09% only profits from hitting a quote that is stale by more than that, which gives a slow maker some cover. It lives or dies on captured spread minus markout, per pair.
+Slow long/flat allocation. Trend and regime positioning over hours to days across your top-30 universe, rebalanced with resting orders. Moves are measured in percent, so fees stop mattering; the hard parts are statistical power and that every position is the same BTC-beta bet.
 
 
 
