@@ -158,3 +158,21 @@ validation on BTC/ETH 2024–26 and on Bitstamp BTC 2012–18, and the declared 
 in every period on both. 2024–26 is a research period, not a fresh hold-out. The rebuilt close-only bars
 understate limit fills, so rerun on hourly bars with real highs and lows from the archive before anything
 is retired.
+
+
+# Completed current-state research run
+
+The primary model estimates current conditions with completed 1m/5m/15m/1h observations. It does not use future-return targets.
+
+- 195 unit/fixture tests passed with warnings treated as errors. Four notebooks executed top-to-bottom.
+- Real replay: 177,120 BTC minute candles, May–August 2026; no real thirty-coin, macro, gold/FX or derivatives data was fabricated.
+- Full synthetic thirty-asset pipeline: 7,500 minutes each, 60 fitted asset-resolution filters, 30 snapshots and market-wide context.
+- Five inspected synthetic phase designs with independent training realizations; no score is a real-market state-accuracy claim.
+- Zero/one-tick volatility-scale collapse is guarded by a lagged dispersion-based floor and a quality flag.
+
+Known structural-direction accuracy, counting abstentions as misses, ranged from 74.6% to 87.0%. Accepted accuracy must be read with coverage and delay in the JSON report. The setup can miss OU phases because the reversion gate is conservative.
+
+Current latent truth on the real data is unobserved; no real accuracy percentage is claimed. Posterior probabilities are conditional on model assumptions. Reversion half-lives depend on anchors. Jump flags are large-return proxies. External-source usefulness still needs an ablation on a real dated panel.
+
+Read `README.md`, then `notebooks/01_current_state_output.ipynb`. The self-contained visual report is `reports/real_minute/report.html`.
+
