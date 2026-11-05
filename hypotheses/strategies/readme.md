@@ -1,3 +1,9 @@
+Premises:
+1. the trading strategy must survive trading fees (0.09% for taker, 0% for maker). This means we are more incline to do maker strategies.\
+exchange is maker heavy.
+
+
+
 Passive dislocation capture. This is LiqGapMR’s idea with a resting entry instead of a market buy. Keep post-only bids a set distance below a reference price (your Binance feed, or the index price the ticker returns) and re-centre them with replace. Fills happen only when Revolut X trades at a discount to the wider market, with no fee and no reaction race. The main risk is a market-wide drop filling every bid at once, so cap total exposure; this is also where a regime gate would pay for itself. 
 revolut
 Two-sided quoting on wide-spread pairs. Quote both sides and shift quotes down as inventory builds, with inventory running from zero to a cap. A taker paying 0.09% only profits from hitting a quote that is stale by more than that, which gives a slow maker some cover. It lives or dies on captured spread minus markout, per pair.
@@ -5,16 +11,16 @@ Slow long/flat allocation. Trend and regime positioning over hours to days acros
 
 
 
-| Family | Supplied evidence | Decision |
-|---|---|---|
-| BTC → altcoin minute lead–lag | `lead_lag_tail(1).csv`: all 42 nonzero-lag direction/asset/horizon cells have negative mean next-open net returns. Lag zero shows simultaneous co-movement. | Do not deploy the simple minute follower. Faster lead–lag would be a new hypothesis requiring paired event data and latency measurements. |
-| Thin-volume drop reversion | `scoreboard(1).csv`: discovery Sharpe +1.285 on 30 trades, holdout −1.014 on 232. In the newer tail sample ETH and SOL have zero qualifying low-volume events; ADA has at most four per cell. | The older selected rule failed. The small tail study alone is uninformative for ETH/SOL. A high touch-back probability is not an economic edge. |
-| Generic sigma-band fades | `scoreboard(1).csv`: selected variant Sharpe +1.037 → −0.977 on 86 → 297 trades. `RESULTS_multi(2).md` reports the wider family losing after costs. | No automatic range → fade mapping. Flat labels do not prove tradable reversion. |
-| ETH wick ladder | `wick_sensitivity_tail(1).csv`: 13/9/6 fills at 0/5/20 bp trade-through, mean −21.46/−49.66/−103.57 bp. Fixed 1%/24-hour version has 4/4/3 fills and negative means. | Retain as an optional falsification control. This sample is small and execution-sensitive. |
-| Acceleration/participation continuation | `trend_continuation_tail(1).csv`: 28 of 30 cells have negative average net return. Two ADA 240-minute cells are positive, with 82 and 190 events, amid many overlapping comparisons. | No robust broad continuation result. The two cells require independent confirmation, not selection after inspecting the table. |
-| Hourly trend | `EXTREMA_RESULTS(2).md`: recent BTC/ETH Sharpe +1.01 / −0.40 / +0.17. Old Bitstamp sample is stronger. | Useful low-turnover long/cash benchmark, not a confirmed recent alpha. The new implementation adds explicit paper risk exits and is not an exact reproduction. |
-| Structure-based routing | Same report: recent BTC/ETH routed validation Sharpe −1.44 versus −0.40 for plain trend; declared manual maps also underperformed. | Routing must demonstrate incremental value. Do not infer strategy profitability from a sensible chart label. |
-| Old Bitstamp liquidity provision | `summary_btc.md`: 2012–16 12σ/4h net +150.60 bp/fill versus +111.35 bp on its shape-preserving sign-flip null. | A venue-liquidity research lead. An ancient venue/fill effect is not evidence for current Revolut X queue economics. The null retaining bar shape can itself retain execution artifacts. |
+| Family | description | Supplied evidence | Decision |
+|---|---|---|---|
+| BTC → altcoin minute lead–lag | x | x | x |
+| Thin-volume drop reversion | x | x | x |
+| Generic sigma-band fades | x | x | x |
+| ETH wick ladder | x | x | x |
+| Acceleration/participation continuation | x | x | x |
+| Hourly trend | 
+| Structure-based routing | 
+| Old Bitstamp liquidity provision | 
 
 The latest attached notebook covers only 50,000 minutes per symbol from 20 September through 24 October 2026, with BTC, ETH, SOL and ADA. Its optional 30-asset batch is disabled. `audit.csv` describes 25 Oanda instruments, not a thirty-coin live crypto panel. These differences matter when assessing coverage.
 
