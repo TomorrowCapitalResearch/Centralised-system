@@ -26,20 +26,13 @@ Slow long/flat allocation. Trend and regime positioning over hours to days acros
 | Pushes into a level with rising or persistent volume | x | x | x |
 | σ-band fades ("2 sigma") | buying 2–3 σ below the rolling norm and selling above it pays.|  x | x |
 | ATH → global min → local max → local min | map the all-time high, the minimum since it (global min), the maximum since that (local max) and the minimum since that (local min, merging into the global min if broken); inside these periods behaviour repeats, and σ-band / stability entries work better once the slope has stopped falling. |  x | x |
-
-
-
-
-| | rule (frozen from edgelab) | support |
-|---|---|---|
 | A1 wick ladder | one resting bid m × 1-minute σ below the last close (m = 8, 12, 16), target the pre-wick close, 1 h or 4 h limit, no bid in a minute after the leader fell ≥ 3σ | discovery pick net > 0 with t > 2 and z > 2 vs null; same sign in hold-out; positive in most of the grid |
 | A2 heavy-participation bounce | ≥ 3 or 4 σ 5-minute drop, participation in the top third, maker bid at the event close, target the pre-move price, 4 h | 60-minute return and trade net above null (z > 2) in both periods |
 | A3 lead–lag | leader (EUR/USD for FX, S&P 500 for indices, US 10Y for bonds) makes a ≥ 3σ minute the follower has not matched by 2σ of its beta-implied move; taker, 15 min | 15-minute follower return above null and net > 0 after costs |
 | A4 trend | daily MA / time-series momentum (28, 56, 112 days), optional efficiency ratio > 0.2, inverse-vol weights, long-only and long/short | Sharpe above buy & hold in both periods, a broad block of lookbacks |
 | A5 cross-sectional momentum | top 3 by 28/56-day return, raw and risk-adjusted, optional efficiency filter | beats equal-weight buy & hold in both periods |
 
-Prior evidence: crypto only (edgelab RESULTS). The ladder and the heavy bounce are liquidity-provision trades; they
-depend on how deep and how often a venue's book gets swept, so a different market structure is a real test.
+
 
 ## O — overlays: "regime detection, stops and risk rules raise profits and Sharpe"
 
@@ -73,21 +66,6 @@ rarity against the Gaussian 0.13 %, and the S1/S3 statistics re-run with each de
 *Support:* a definition is "better" if it spreads events evenly over the clock and gives k its nominal rarity;
 it only *helps a strategy* if the strategy's hold-out numbers improve, not just the event count.
 
-# siglab results: other asset classes, the earlier alphas, risk overlays, corrected sigma (31 Oct 2026)
-
-**Data.** 25 Oanda markets from the FutureSharks repository, 1-minute mid-price bars with tick-count volume,
-Jan 2005 → 14 May 2020, 110 million bars: 6 FX pairs, 8 stock-index CFDs, 7 commodities, 4 government bonds.
-Plus Bitstamp BTC/USD minute bars 2012 → Jan 2018 for the crypto alphas. Session handling: gaps over 30 minutes
-are breaks; intraday trades go flat before them, hourly and slower trades hold through them.
-
-**Method.** The grids in `siglab/studies.py` and `HYPOTHESES.md` (v2) were fixed before the runs. Volume profiles,
-percentile thresholds and every pick come from **discovery 2005–2012**; **hold-out 2013 → May 2020** is read once.
-Every statistic is compared with 10 sign-flipped copies of each market (same volatility, volume and gaps; direction
-randomised): `z` = (real − null) / max(null sd, real day-clustered SE), so |z| < 2 is noise. Costs per leg are
-placeholders (FX 0.75–1.25 bp, index CFDs 0.8–2 bp, commodities 1.5–10 bp, bonds 0.8–2 bp half-spread); a resting
-order on mid quotes fills only after price trades half a spread through it. Books: 10 equal slots across all
-markets. Reproduce: `python scripts/run_multi.py --part minute | coarse | btc` (CSV tables and summaries in
-`results_multi/`).
 
 ## Verdicts
 
@@ -108,16 +86,7 @@ markets. Reproduce: `python scripts/run_multi.py --part minute | coarse | btc` (
 | C | Corrected σ | **Better measurement, no edge** | at 3σ a k·σ cut finds 4–7× more drops than the true tail; seasonal σ evens the hours; hold-out \|z\| ≤ 1.8 |
 | BTC | Ladder on Bitstamp 2012–16 (never used by edgelab) | **Profitable, mostly spread capture** | +151 bp per fill, but sign-flipped copies earn +111 bp (z 2.2) |
 
-Regime detection, stops and risk rules did not raise profits or Sharpe on top of these signals, with one exception:
-stops helped on S1's intraday drops, where the moves persist, and only by losing less. Volatility targeting and
-inverse-volatility sizing made the risk smoother, not the returns better. The one effect that survived both
-periods (lead–lag) is real, but too small to pay for crossing the spread.
 
-## Your crypto run (siglab 0.1, 30 Oct)
-
-One thing first: the event tables count **2 coins in discovery and 3 in hold-out**, so siglab found far fewer coins
-in your data folder than edgelab's 20. Treat the run as indicative; pointing `SIGLAB_EXTRA` at edgelab's Binance
-folder gives the next run all 20.
 
 | | discovery 2021–23 | hold-out 2024–26 | read |
 |---|---|---|---|
@@ -331,23 +300,7 @@ lose in every cell; no edge beyond drift.
 * **Fresh data.** June 2020 onward has not been touched. It needs `fetch_dukascopy.py` on your machine (the
   download sites are blocked from my sandbox).
 
-## What to run next on your PC
 
-1. **Fresh data:** `python scripts/fetch_dukascopy.py --data "C:/Users/Mark Brezina/data" --start 2015-01 --all`
-   (2015 onward, with bid/ask extremes; a long download), then
-   `python scripts/run_multi.py --data "<data>/dukascopy" --symbols all --splits discovery:2015-01-01:2020-06-01 fresh:2020-06-01:`.
-   Picks are re-made on Dukascopy 2015–20 and read once on June 2020 onward. Nothing above has seen 2020–26.
-2. **All 20 coins:** set `SIGLAB_EXTRA` to edgelab's Binance folder and rerun `run_multi.py --universe crypto`.
-   Your 30 Oct run found only 2–3 coins.
-3. **Revolut X fills:** the Bitstamp ladder shows the profit depends on the venue's book. Log real resting-order
-   fills before trusting any limit-order backtest.
-4. **The structure ideas** moved to the Strategy Regime Lab (notebook 05, cascading extrema). See its
-   EXTREMA_RESULTS.md.
-
-Sources for the overlay theory: Kaminski & Lo (2014), *When do stop-loss rules stop losses?*, Journal of
-Financial Markets 18. Moreira & Muir (2017), *Volatility-Managed Portfolios*, Journal of Finance 72(4).
-Harvey, Hoyle, Korgaonkar, Rattray, Sargaison & Van Hemert (2018), *The Impact of Volatility Targeting*,
-Journal of Portfolio Management 45(1).
 
 # Cascading extrema: first results (31 Oct 2026)
 
