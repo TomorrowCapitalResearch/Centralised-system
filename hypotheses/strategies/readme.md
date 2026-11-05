@@ -25,10 +25,7 @@ Slow long/flat allocation. Trend and regime positioning over hours to days acros
 | High-volume drops revert | x | x | x |
 | Pushes into a level with rising or persistent volume | x | x | x |
 | σ-band fades ("2 sigma") | buying 2–3 σ below the rolling norm and selling above it pays.|  x | x |
-| ATH → global min → local max → local min| map the all-time high, the minimum since it (global min), the maximum since that 
-(local max) and the minimum since that (local min, merging into the global min if broken); inside
-these periods behaviour repeats, and σ-band / stability entries work better once the slope has stopped
-falling. |  x | x |
+| ATH → global min → local max → local min | map the all-time high, the minimum since it (global min), the maximum since that (local max) and the minimum since that (local min, merging into the global min if broken); inside these periods behaviour repeats, and σ-band / stability entries work better once the slope has stopped falling. |  x | x |
 
 
 
