@@ -327,3 +327,22 @@ The strongest ideas across these screenshots are not necessarily the quantum ter
 4. Portfolio exposure should depend on predictive distributions and model uncertainty: a regime estimate is useful only insofar as it improves trading or risk decisions.
 
 These ideas provide a coherent foundation for extending the market-state engine into a continuous, multiscale, distribution-aware model. The next scientific step is to turn each proposed structural property into a causal, measurable feature and determine whether it produces genuine incremental forecasting or trading value.
+
+
+I've received the additional screenshots from Quant Research Decoded. They extend the earlier material with several interesting approaches to market-state modelling, volatility, regime transitions, and trading strategies.
+
+The most relevant ideas for our quantitative trading research are:
+
+1. Nonlinear jump-volatility models: Modelling volatility through state-dependent jump intensities rather than relying exclusively on diffusion processes, EWMA, or GARCH.
+2. Market-shock detection: Identifying structural breakdowns through the propagation of momentum and volatility across assets and timescales.
+3. Continuous regime detection: Treating momentum and mean reversion as simultaneously active forces rather than mutually exclusive market states.
+4. Dynamic strategy dependence: Measuring whether apparently uncorrelated strategies share underlying volatility exposures and therefore become correlated during market stress.
+5. Time-frequency regime analysis: Using multiscale signal interactions to detect structural changes that may precede large price movements.
+6. Path-dependent information: Investigating the so-called ghost dimension, where the trajectory between two observations contains information not captured by their endpoints.
+7. Regime-dependent portfolio allocation: Using detected market states to adjust exposure, leverage, and strategy selection.
+
+An important distinction: these are research hypotheses and modelling ideas, not independently verified trading advantages. Several descriptions omit the actual mathematical construction, and the screenshots alone do not establish that the reported strategies are profitable out of sample.
+
+For our existing market-state and algorithmic-trading framework, I would particularly prioritize multiscale regime detection, nonlinear volatility dynamics, cross-asset dependencies, and momentum–mean-reversion interactions.
+
+Would you like me to consolidate all the screenshots you've shared into one comprehensive set of mathematical research notes, including the underlying theory, candidate equations, practical Python implementations, and testable trading hypotheses?
