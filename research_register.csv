@@ -1,0 +1,67 @@
+id,area,idea,source_level,priority,status,claim_or_hypothesis,minimal_decisive_test,source_reference
+M01,Foundations,SPDE global bounds,PAPER,P3,OPEN_MATH,SPDE assumptions and prior bounds; no generic stability claim,Prove narrow well-posedness or numerical consistency,arxiv.org/abs/2402.05544
+M02,Foundations,Rough path signatures,SCREENSHOT,P3,BACKLOG,Irregular multichannel path structure may aid predictions,Compare signature/CDE to lag baseline,ICML 2026 screenshot
+M03,Foundations,Feynman stationary action analogy,SCREENSHOT,P3,BACKLOG,Defined path action might provide useful feature,Compare to curvature and smoothing; no quantum inference,social screenshot
+M04,Foundations,Graph Laplacian,MATH,P2,SPECIFIED,Asset relationships can be represented as weighted graph,Network features versus correlation baseline,graph physical-analogy screenshot
+M05,Foundations,Wasserstein entropy gradient flow,MATH,P2,BACKLOG,Distribution shift signal from Wasserstein distance,Compare to KS/MMD/volatility-change,optimal transport screenshot
+M06,Foundations,Layer spectral free-energy idea,SCREENSHOT,P3,BACKLOG,NN layer spectral statistics may reflect generalization,Forward validation versus simple selection criteria,Charles H Martin screenshot
+M07,Foundations,Fourier spectral decomposition,MATH,P2,BACKLOG,Seasonal/periodic components may have forward predictability,Causal filtering with surrogate null,Fourier screenshot
+M08,Foundations,Negative results and impossibility,SCREENSHOT,P0,SPECIFIED,Archiving invalid models saves research time,Adopt NEGATIVE status; preserve counterexamples,methodology screenshots
+M09,Foundations,Cross-field analogy transfer,SCREENSHOT,P3,BACKLOG,Validated mathematical analogies can transfer methods,Explicit mapping assumptions and synthetic tests,methodology screenshots
+M10,Foundations,Nonconstructive existence versus computability,MATH,P3,SPECIFIED,Existence alone does not give usable algorithm,Track algorithmic complexity/conditioning,methodology screenshots
+S01,States,Close-to-close volatility,MATH,P1,BACKLOG,Baseline conditional risk,Compare to realized variance loss,volatility features screenshot
+S02,States,ARCH GARCH EGARCH GJR,MATH,P1,BACKLOG,Conditional variance and asymmetry,OOS likelihood and net risk utility,QFI screenshot
+S03,States,Parkinson Rogers-Satchell Yang-Zhang,MATH,P1,BACKLOG,Range-based features may improve volatility forecasts,Compare against close-to-close with same horizon,Quantreo screenshot
+S04,States,ADF KPSS ARCH-LM Hurst autocorrelation,MATH,P1,BACKLOG,Regime diagnostics and null assumptions,Rolling ADF/KPSS/vol clustering; future skill,Quantreo screenshot
+S05,States,Multi-axis market-state engine,HYPOTHESIS,P1,BACKLOG,Direction vol turbulence liquidity as separate axes,Brier/calibration and future-state score,user research objective
+S06,States,Factor uncertainty index,SCREENSHOT,P2,BACKLOG,Factor uncertainty may predict risk,Compare with raw volatility controls,Factor Uncertainty screenshot
+S07,States,Entropy mutual information transfer entropy,PAPER/SCREENSHOT,P2,BACKLOG,Nonlinear dependence helps state inference,Forward transition prediction with bias corrections,Financial Information Theory screenshot
+S08,States,Dynamic asset correlation network,SCREENSHOT,P2,BACKLOG,Network centrality modifies portfolio risk,Asset-year forward drawdown predictions,network selection screenshot
+S09,States,Q-variance,PAPER,P2,BACKLOG,Conditional variance approximates parabola,Reproduce across assets and scales,github.com/q-variance/challenge
+S10,States,KAMA market regime,SCREENSHOT,P1,BACKLOG,Adaptive trend regime improves strategy gating,Compare simple MAs/vol classes,Quantreo screenshot
+S11,States,Macro inflation debt bonds,SCREENSHOT,P2,BACKLOG,Macro states alter correlation and expected returns,Point-in-time multi-asset regime test,LQG/AllianceBernstein 2025 slides
+A01,Alpha,Low-volume drop reversal,HYPOTHESIS,P1,BACKLOG,Thin volume shock reverts more than normal,Net bps for 0.3 0.5 1% shocks,user hypothesis
+A02,Alpha,Detrended 2-sigma fade,HYPOTHESIS,P1,BACKLOG,Demeaned residual reverts,Past-only z-score plus signed baseline,user hypothesis
+A03,Alpha,Bollinger and EMA fade,HYPOTHESIS,P1,BACKLOG,Deviation from moving center fades,Compare EMA baseline and costs,user hypothesis
+A04,Alpha,Moving-average momentum,HYPOTHESIS,P1,BACKLOG,Crossovers forecast continuation,5/15/30 versus 5/20/40 and buy-hold,user hypothesis
+A05,Alpha,Jump clustering and postjump return,HYPOTHESIS,P1,BACKLOG,Events predict future sign/tail,Event-study sign/delay controls,user hypothesis
+A06,Alpha,US opening windows,HYPOTHESIS,P1,BACKLOG,1-30m US-open effects,Conditional return and execution model,user hypothesis
+A07,Alpha,Global local extrema and phases,HYPOTHESIS,P1,BACKLOG,Confirmed structural pivots predict conditional moves,Causal pivot timestamps and benchmark,user hypothesis
+A08,Alpha,Breakout and absorption,HYPOTHESIS,P1,BACKLOG,Liquidity absorption and level pushes matter,Book-based event outcomes,liquidity screenshot
+A09,Alpha,Pairs cointegration and OU,HYPOTHESIS,P1,BACKLOG,Residual spread reverts,Sealed tests and two-leg costs,user hypothesis
+A10,Alpha,SSA spread denoising and noise gate,HYPOTHESIS,P1,BACKLOG,Denoised spread persists more than residual noise,Causal rolling SSA vs raw spread,user supplied derivation
+A11,Alpha,Gap filling and spot futures,HYPOTHESIS,P1,BACKLOG,Dislocations converge after execution cost,Basis/funding/latency tests,user notes plus oil screenshot
+A12,Alpha,Volatility extreme maker swing,HYPOTHESIS,P1,BACKLOG,Place maker orders around predicted price extremes,Fill and adverse selection cost simulation,user hypothesis
+A13,Alpha,Stationary-action-inspired strategy,HYPOTHESIS,P1,BACKLOG,Action-like feature flattening predicts reversion,Feature definition and null signal twins,user hypothesis
+A14,Alpha,Mean return and sign counters,HYPOTHESIS,P1,BACKLOG,Simple counters forecast return,Regress conditional returns net cost,user hypothesis
+A15,Alpha,Two/three-horizon 6-20-60,SCREENSHOT,P1,BACKLOG,Short indicator relative to longer indicates entry,Confirm exact formula with causal test,whiteboard screenshot
+A16,Alpha,Lead lag BTC-to-alts,HYPOTHESIS,P1,BACKLOG,BTC leads alt price moves,Time alignment and latency controls,user research objective
+B01,Microstructure,Queue diffusion hitting probability,MATH/SCREENSHOT,P1,BACKLOG,Queue imbalance predicts next quote movement,First passage toy test plus data calibration,queue PDE screenshot
+B02,Microstructure,Hidden liquidity identifiability,MATH,P2,OPEN_MATH,One equation cannot identify two hidden queues,Counterexample; add observable restrictions,queue PDE screenshot
+B03,Microstructure,Liquidity absorption vs void,HYPOTHESIS,P2,BACKLOG,Aggressive flow versus depth predicts continuation,Order book event study,The Price is a Lie screenshot
+B04,Microstructure,Physical inventory squeeze analogy,SCREENSHOT,P2,BACKLOG,Inventory boundaries give nonlinear spread behavior,Fit to oil; only cautiously apply crypto,LQG oil seminar
+B05,Microstructure,Futures price discovery,SCREENSHOT,P1,BACKLOG,Futures sometimes lead spot,Cross-venue time-lag and basis analysis,Financial vs Physical Barrels
+P01,Portfolio,Mean variance CVaR allocation,MATH,P1,BACKLOG,Constrained diversified portfolio improves risk net,Compare fixed weight inverse vol constrained,portfolio notes
+P02,Portfolio,Bellman inventory control,MATH,P2,BACKLOG,Sequential control outperforms greedy trades,MDP with honest simulator,control screenshot and user formula
+P03,Portfolio,Option MM PnL decomposition,SCREENSHOT,P2,BACKLOG,Jump carry vol shocks separate risk,Independent PnL reconciliation,option MM screenshot
+P04,Portfolio,Maker/taker fill model,HYPOTHESIS,P0,BACKLOG,Execution quality determines net alpha,Realistic queue based fill simulator,venue economics
+P05,Portfolio,Graph central-peripheral allocation,HYPOTHESIS,P2,BACKLOG,Network position can improve risk budget,Compare simple beta/risk weighting,network portfolio screenshot
+P06,Portfolio,Alpha potential games,SCREENSHOT,P3,BACKLOG,Approx potential game may simplify strategic interaction,Simple simulator with equilibrium baseline,University of Toronto talk
+O01,Optimization,No Free Lunch optimizer comparison,MATH,P1,BACKLOG,No universal best on all objective functions,Fair benchmark runs,Peter Cotton screenshot
+O02,Optimization,Wind Rose directional sensitivity,USER HYPOTHESIS,P2,BACKLOG,Objective anisotropy identifies stable parameter directions,Define exact method before run,user notes
+O03,Optimization,Flood fill stable parameter basins,USER HYPOTHESIS,P2,BACKLOG,Broad parameter regions generalize better,Connected basin stability test,user notes
+O04,Optimization,Smoothed simplex,PAPER,P2,BACKLOG,LP simplex has better smoothed than worst-case behavior,Toy LP and analysis of solver choices,arxiv.org/abs/2504.04197
+I01,Infrastructure,Qlib modular components,REPO,P0,BACKLOG,Separable data model portfolio execution APIs,Engineering comparison/design audit,github.com/microsoft/qlib
+I02,Infrastructure,TradingAgents research roles,REPO,P2,BACKLOG,Multi-agent research review might improve process,Source and data leakage audit,github.com/TauricResearch/TradingAgents
+I03,Infrastructure,Kronos sequence model,REPO,P2,BACKLOG,Pretrained market model yields feature uplift,Controlled head-to-head vs GBDT TCN,github.com/shiyu-coder/Kronos
+I04,Infrastructure,WorldMonitor macro/news,REPO,P2,BACKLOG,Global event dashboard aids context,Date fidelity and feed/source audit,github.com/koala73/worldmonitor
+I05,Infrastructure,BlackJAX Bayesian sampling,REPO,P2,BACKLOG,Posterior samples improve risk calibration,Compare simpler inference methods,github.com/blackjax-devs/sampling-book
+I06,Infrastructure,Causal backtest and evaluation report,IMPLEMENT,P0,BACKLOG,One shared cash ledger and reports for every run,Synthetic conservation plus holdout,QF-lib and Qlib screenshots
+I07,Infrastructure,LLM research master prompt,USER NOTES,P1,SPECIFIED,Structured six-phase research improves traceability,Use evidence register and independent audit,user supplied master prompt
+N01,Nonalpha,Macro instability 2025 LQG seminar,SCREENSHOT,P2,BACKLOG,Macro forces change risk premia and correlations,Rebuild official series with timestamps,LQG 2025 photos
+N02,Nonalpha,Actuarial reserving models,SCREENSHOT,P3,BACKLOG,Reservers offer useful uncertainty modeling,Review actuarial context for transfer,textbook index image
+N03,Nonalpha,Quant firms watchlist,USER NOTES,P2,SPECIFIED,Target institutions should be compared per role,Verify vacancies roles tech domains,user supplied list
+N04,Nonalpha,Grant and fellowship leads,SCREENSHOT,P2,BACKLOG,Some programs may fund research work,Check official terms deadlines and location,grant list screenshot
+N05,Nonalpha,LinkedIn professional summary,SCREENSHOT,P2,BACKLOG,Specific positioning helps communicate verified competence,Build quant-tailored evidence and narrative,profile screenshot
+N06,Nonalpha,Physics alternative cosmology analogy,SCREENSHOT,P3,BACKLOG,Alternative gravity hypotheses need stand-alone tests,GR/ΛCDM comparison outside trading repo,physics meme screenshot
+N07,Nonalpha,External Sharpe 2.5-3.0 model screenshot,SCREENSHOT,P3,BACKLOG,Attractive reported backtest not independently verified,Find original model/data or keep anecdotal,performance table image
