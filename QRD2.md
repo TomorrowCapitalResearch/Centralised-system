@@ -285,3 +285,31 @@ Stage C — Trading and portfolio validation. Feed only validated forecasts into
 The two most promising additions from this batch are Enhanced CDaR for portfolio risk management and multiscale variance decomposition for market-state detection. The time-dynamics features are also worth testing, but some of the formulas need careful correction or interpretation before they can be used.
 
 The overarching research objective is now clearer: build a system that estimates not only where prices may move, but also how the market is moving, how stable that behaviour is, and how much risk the portfolio should take under those conditions.
+
+
+
+I've received the additional screenshots from Quant Research Decoded. They expand the collection into several useful areas of quantitative finance, particularly market microstructure, volatility modelling, regime classification, tail-risk estimation, and probability-based position sizing.
+
+The most important concepts in this batch are:
+
+| Research area            | Model or concept                                        | Potential application                                    |
+| ------------------------ | ------------------------------------------------------- | -------------------------------------------------------- |
+| Market microstructure    | Drift–volatility surfaces and evolving return densities | Detect distributional regime shifts                      |
+| Regime classification    | ZEROLINE σ.1, jump clustering and occupation density    | Identify persistent market states                        |
+| Cross-venue liquidity    | VenueFrag and VenueVolSpread                            | Detect liquidity fragmentation and execution risk        |
+| Volatility modelling     | Λ-Vol and feedback dynamics                             | Model volatility propagation and instability             |
+| Tail-risk modelling      | VaR reliability surfaces                                | Detect when risk-model assumptions break down            |
+| Market-state geometry    | Momentum–volatility regime surfaces                     | Select strategies conditional on market conditions       |
+| Order-flow dynamics      | Churn, liquidity bursts and memory surfaces             | Distinguish persistent activity from temporary shocks    |
+| Cross-asset structure    | Sector and factor coupling                              | Detect correlation breakdowns and market rotations       |
+| Probability-based sizing | Distribution concentration, entropy and multimodality   | Adjust exposure based on estimated outcome distributions |
+
+A particularly useful distinction is between descriptive models, which characterize current market conditions, predictive models, which estimate future outcomes, and decision models, which convert those estimates into trading positions.
+
+The screenshots contain interesting research hypotheses, but the visualizations alone do not establish predictive power or profitability. For example, a concentrated probability distribution does not automatically imply a positive expected return, and a regime surface needs independently validated definitions before its geometric features can guide trading decisions.
+
+These concepts fit naturally into the broader research framework we've been developing:
+
+Market data → Feature extraction → Market-state estimation → Predictive distributions → Strategy selection → Position sizing → Risk management → Execution → Performance validation.
+
+I can continue consolidating the screenshots into structured research notes, preserving the mathematical definitions, proposed mechanisms, practical applications, and hypotheses that would need empirical testing.
