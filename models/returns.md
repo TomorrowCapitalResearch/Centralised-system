@@ -17,9 +17,11 @@
 
 <img width="790" height="637" alt="image" src="https://github.com/user-attachments/assets/427daf03-4af5-47f5-9ad0-2aa8ceb601b0" />
 
-**high** \
+## volatilities
 
-**low** \
+**standard price column volatilies**\
+<img width="1171" height="470" alt="image" src="https://github.com/user-attachments/assets/8e074a84-98a4-44e5-9fa4-0d5a482fe11d" />
 
-**close** \
+**ranges volatilities**\
+<img width="1165" height="471" alt="image" src="https://github.com/user-attachments/assets/b09880eb-ea4c-4648-a008-5a4b8d35449c" />
 
