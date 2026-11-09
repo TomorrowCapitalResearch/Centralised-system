@@ -6,6 +6,8 @@
 |---|---|
 | Raw volume |  Raw volume  |
 
+volume_return             0.429184              1.946046   8.503176                 111.283379    -0.979376     33.605421
+
 
 we can see there are no 0-volume timesteps.
 
