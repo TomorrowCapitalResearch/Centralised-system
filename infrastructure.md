@@ -40,7 +40,15 @@ features
 | 18 | OC_diff | (OC(t) - OC(t-1))/OC(t-1) | a |
 | 19 | HC_diff | (HC(t) - HC(t-1))/HC(t-1) | a |
 | 20 | CL_diff | (CL(t) - CL(t-1))/CL(t-1) | a |
-
+| 21 | Open_vol | The opening price volatility | a |
+| 22 | High_vol | The highest price volatility | a |
+| 23 | Low_vol | The lowest price volatility | a |
+| 24 | Close_vol | The close price volatility | a |
+| 25 | Volume_vol | The volume traded volatility | a |
+| 26 | High_low_vol | H(t) - L(T) volatility| a |
+| 27 | Open_close_vol | C(t)-O(t) volatility | a |
+| 28 | High_close_vol | H(t) - C(t) volatility| a |
+| 29 | Close_low_vol | C(t) - L(t) volatility | a |
 
 market data
 
