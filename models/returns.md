@@ -25,3 +25,4 @@
 **ranges volatilities**\
 <img width="1165" height="471" alt="image" src="https://github.com/user-attachments/assets/b09880eb-ea4c-4648-a008-5a4b8d35449c" />
 
+## simple markov states.
