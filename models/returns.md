@@ -26,3 +26,47 @@
 <img width="1165" height="471" alt="image" src="https://github.com/user-attachments/assets/b09880eb-ea4c-4648-a008-5a4b8d35449c" />
 
 ## simple markov states.
+========================================
+ TOP PATTERNS FOR LENGTH = 3
+========================================
+pattern_3  frequency prob_str deviation_str
+      udd        129    55.0%        +0.050
+      uuu        115    47.0%        -0.030
+      dud        125    47.2%        -0.028
+      duu        128    47.7%        -0.023
+      ddd        119    48.7%        -0.013
+      udu        124    50.8%        +0.008
+      uud        128    50.8%        +0.008
+      ddu        129    50.4%        +0.004
+
+
+========================================
+ TOP PATTERNS FOR LENGTH = 5
+========================================
+pattern_5  frequency prob_str deviation_str
+    duduu         28    32.1%        -0.179
+    uduud         34    64.7%        +0.147
+    uuudd         33    63.6%        +0.136
+    duudd         30    63.3%        +0.133
+    duuud         32    37.5%        -0.125
+    uuddd         23    60.9%        +0.109
+    ddddu         27    59.3%        +0.093
+    uduuu         29    41.4%        -0.086
+    udduu         35    42.9%        -0.071
+    uuduu         35    57.1%        +0.071
+
+
+========================================
+ TOP PATTERNS FOR LENGTH = 7
+========================================
+pattern_7  frequency prob_str deviation_str
+  uuddudd         11    81.8%        +0.318
+  uududdu         10    80.0%        +0.300
+  uduudud         10    20.0%        -0.300
+  uduuudd         12    75.0%        +0.250
+  uduuduu         12    25.0%        -0.250
+  ududduu         11    27.3%        -0.227
+  uuduuud         11    27.3%        -0.227
+  duududd         11    72.7%        +0.227
+  ddududd         11    27.3%        -0.227
+  udddudu         10    30.0%        -0.200
