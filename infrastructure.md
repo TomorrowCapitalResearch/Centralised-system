@@ -32,23 +32,31 @@ features
 | 10 | Low_diff | (L(t) - L(t-1))/L(t-1) | a |
 | 11 | Close_diff | (C(t) - C(t-1))/C(t-1) | a |
 | 12 | Volume_diff | (V(t) - V(t-1))/V(t-1) | a |
-| 13 | High_low | H(t) - L(T) | a |
-| 14 | Open_close | C(t)-O(t) | a |
-| 15 | High_close | H(t) - C(t) | a |
-| 16 | Close_low | C(t) - L(t) | a |
-| 17 | HL_diff | (HL(t) - HL(t-1))/HL(t-1) | a |
-| 18 | OC_diff | (OC(t) - OC(t-1))/OC(t-1) | a |
-| 19 | HC_diff | (HC(t) - HC(t-1))/HC(t-1) | a |
-| 20 | CL_diff | (CL(t) - CL(t-1))/CL(t-1) | a |
-| 21 | Open_vol | The opening price volatility | a |
-| 22 | High_vol | The highest price volatility | a |
-| 23 | Low_vol | The lowest price volatility | a |
-| 24 | Close_vol | The close price volatility | a |
-| 25 | Volume_vol | The volume traded volatility | a |
-| 26 | High_low_vol | H(t) - L(T) volatility| a |
-| 27 | Open_close_vol | C(t)-O(t) volatility | a |
-| 28 | High_close_vol | H(t) - C(t) volatility| a |
-| 29 | Close_low_vol | C(t) - L(t) volatility | a |
+| 13 | Open_close_diff | close(t) - open(t) | a |
+| 14 | Close_close_diff | C(t) - C(t-1) | a |
+| 15 | ocd_ind | sign(close(t) - open(t)) | a |
+| 16 | ccd_ind | sign(C(t) - C(t-1)) | a |
+| 17 | High_low | H(t) - L(T) | a |
+| 18 | Open_close | C(t)-O(t) | a |
+| 19 | High_close | H(t) - C(t) | a |
+| 20 | Close_low | C(t) - L(t) | a |
+| 21 | HL_diff | (HL(t) - HL(t-1))/HL(t-1) | a |
+| 22 | OC_diff | (OC(t) - OC(t-1))/OC(t-1) | a |
+| 23 | HC_diff | (HC(t) - HC(t-1))/HC(t-1) | a |
+| 24 | CL_diff | (CL(t) - CL(t-1))/CL(t-1) | a |
+| 25 | Open_vol | The opening price volatility | a |
+| 26 | High_vol | The highest price volatility | a |
+| 27 | Low_vol | The lowest price volatility | a |
+| 28 | Close_vol | The close price volatility | a |
+| 29 | Volume_vol | The volume traded volatility | a |
+| 30 | High_low_vol | H(t) - L(T) volatility| a |
+| 31 | Open_close_vol | C(t)-O(t) volatility | a |
+| 32 | High_close_vol | H(t) - C(t) volatility| a |
+| 33 | Close_low_vol | C(t) - L(t) volatility | a |
+| 34 | 3step_ind | ccd_ind on 3 steps | a |
+| 35 | 5step_ind | ccd_ind on 5 steps  | a |
+| 36 | 7step_ind| ccd_ind on 7 steps | a |
+| 37 | 10step_ind | ccd_ind on 10 steps | a |
 
 market data
 
