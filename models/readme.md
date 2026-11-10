@@ -154,12 +154,16 @@ We can take advantage of those on profitable trading strategies.
 
 ### initial plots
 **standard price column volatilies**\
+These were built on the open, high, low, close prices.\
 <img width="1171" height="470" alt="image" src="https://github.com/user-attachments/assets/8e074a84-98a4-44e5-9fa4-0d5a482fe11d" />
 
 **ranges volatilities**\
+this plot was run on a short horizon, for the spreads we developed earlier, high-low, close-low, high-close, close-open.\
 <img width="1165" height="471" alt="image" src="https://github.com/user-attachments/assets/b09880eb-ea4c-4648-a008-5a4b8d35449c" />
 
 ### longer horizon plots
+
+these were done on prices, Open high low close. As well as on the price returns.
 
 <img width="1055" height="310" alt="image" src="https://github.com/user-attachments/assets/2f200e38-6b09-4d5a-a165-574704e761ee" />
 
