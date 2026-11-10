@@ -37,10 +37,12 @@ XAUUSD_ask   0.031195  0.030413  2.782706  19.612406  1326991.0
 XAUUSD_bid   0.031222  0.030480  2.611507  12.448130  1326991.0
 
 
-Than we want to consider what happens if we "skip" the bottom 5% or some other threshold.\
-after this we want to check if volume is mean reverting. \
-than we want to check if the volume is trend \
-than we want to check if the volume means move over time \
+
+- *note: we wait with this* - Than we want to consider what happens if we "skip" the bottom 5% or some other threshold.\
+- after this we want to check if volume is mean reverting. \
+- than we want to check if the volume means move over time \
+- than we want to check if the volume is trend \
+
 such that the mean reversion happens around different means.\
 than we want to know if big or small volume is associated with big or small returns \
 than we want to look for volume profiles in "flat", "up", "down", "volatile",... periods \
