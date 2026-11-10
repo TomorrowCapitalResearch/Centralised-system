@@ -147,7 +147,11 @@ than we want to find autocorrelations and check correlations to spreads \
 
 
 
-## volatilities
+## turbulence/volatility
+we want to understand the general turbulence behaviors, this we plan to utilise for "market limit orders" for various different periods.
+If we can predict the likely swings in the prices, open, high, low, close, we might be able to also predict likely zones for hits on limit orders, such that
+We can take advantage of those on profitable trading strategies.
+
 
 **standard price column volatilies**\
 <img width="1171" height="470" alt="image" src="https://github.com/user-attachments/assets/8e074a84-98a4-44e5-9fa4-0d5a482fe11d" />
