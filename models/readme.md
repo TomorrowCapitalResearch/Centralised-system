@@ -152,12 +152,22 @@ we want to understand the general turbulence behaviors, this we plan to utilise 
 If we can predict the likely swings in the prices, open, high, low, close, we might be able to also predict likely zones for hits on limit orders, such that
 We can take advantage of those on profitable trading strategies.
 
-
+### initial plots
 **standard price column volatilies**\
 <img width="1171" height="470" alt="image" src="https://github.com/user-attachments/assets/8e074a84-98a4-44e5-9fa4-0d5a482fe11d" />
 
 **ranges volatilities**\
 <img width="1165" height="471" alt="image" src="https://github.com/user-attachments/assets/b09880eb-ea4c-4648-a008-5a4b8d35449c" />
+
+### longer horizon plots
+
+<img width="1055" height="310" alt="image" src="https://github.com/user-attachments/assets/2f200e38-6b09-4d5a-a165-574704e761ee" />
+
+<img width="1055" height="310" alt="image" src="https://github.com/user-attachments/assets/e4654fa2-7384-4150-a942-96ac29d49ef7" />
+
+
+
+
 
 ## simple markov states.
 
