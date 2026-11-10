@@ -102,4 +102,69 @@ we can see there are no 0-volume timesteps.
 
 
 
+## returns
+
+
+| Type | mean | std | skew | kurtosis | min | max |
+|---|---|---|---|---|---|---|
+|Open| 0.000007 | 0.000650 | 0.520842 | 4.149302 | -0.002593 | 0.004404 |
+|High| 0.000007 | 0.000606 | 1.130605 | 6.945386 | -0.002142 | 0.004602 |
+|Low| 0.000007 | 0.000576 | 0.357939 | 5.367008 | -0.002647 | 0.004297 |
+|Close| 0.000007 | 0.000650 | 0.520512 | 4.147852 | -0.002593 | 0.004404 |
+|High Low| 5.857797 | 107.161273 | 20.734450 | 447.169557 | -0.999797 | 2553.999998 |
+|Open Close| -15.047907 | 254.229297 | -23.887206 | 641.408332 | -7160.999993 | 514.200000 |
+|High Close| 144.285734 | 861.055685 | 9.071374 | 106.217630 | -1.000000 | 13866.999987 |
+|Close Low| 312.557159 | 1407.023330 | 6.916645 | 60.989254 | -1.000000 | 18235.000010 |
+
+<img width="1083" height="711" alt="image" src="https://github.com/user-attachments/assets/52ce2ea2-013b-44e4-8ce4-224775221992" />
+
+<img width="790" height="637" alt="image" src="https://github.com/user-attachments/assets/427daf03-4af5-47f5-9ad0-2aa8ceb601b0" />
+
+## volatilities
+
+**standard price column volatilies**\
+<img width="1171" height="470" alt="image" src="https://github.com/user-attachments/assets/8e074a84-98a4-44e5-9fa4-0d5a482fe11d" />
+
+**ranges volatilities**\
+<img width="1165" height="471" alt="image" src="https://github.com/user-attachments/assets/b09880eb-ea4c-4648-a008-5a4b8d35449c" />
+
+## simple markov states.
+
+**TOP PATTERNS FOR LENGTH = 3** \
+pattern_3  frequency prob_str deviation_str \
+      udd        129    55.0%        +0.050 \
+      uuu        115    47.0%        -0.030 \
+      dud        125    47.2%        -0.028 \
+      duu        128    47.7%        -0.023 \
+      ddd        119    48.7%        -0.013 \
+      udu        124    50.8%        +0.008 \
+      uud        128    50.8%        +0.008 \
+      ddu        129    50.4%        +0.004 \
+
+**TOP PATTERNS FOR LENGTH = 5** \
+pattern_5  frequency prob_str deviation_str \
+    duduu         28    32.1%        -0.179 \
+    uduud         34    64.7%        +0.147 \
+    uuudd         33    63.6%        +0.136 \
+    duudd         30    63.3%        +0.133 \
+    duuud         32    37.5%        -0.125 \
+    uuddd         23    60.9%        +0.109 \
+    ddddu         27    59.3%        +0.093 \
+    uduuu         29    41.4%        -0.086 \
+    udduu         35    42.9%        -0.071 \
+    uuduu         35    57.1%        +0.071 \
+
+**TOP PATTERNS FOR LENGTH = 7** \
+pattern_7  frequency prob_str deviation_str \
+  uuddudd         11    81.8%        +0.318 \
+  uududdu         10    80.0%        +0.300 \
+  uduudud         10    20.0%        -0.300 \
+  uduuudd         12    75.0%        +0.250 \
+  uduuduu         12    25.0%        -0.250 \
+  ududduu         11    27.3%        -0.227 \
+  uuduuud         11    27.3%        -0.227 \
+  duududd         11    72.7%        +0.227 \
+  ddududd         11    27.3%        -0.227 \
+  udddudu         10    30.0%        -0.200 \
+
 
