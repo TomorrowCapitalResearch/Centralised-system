@@ -12,6 +12,31 @@ It is this associated belief that leads us to the following tests.
 
 
 we first want to know mean, std, skew, kurtosis, distributions. \
+
+
+--- Volume Statistics Summary ---
+                    mean           std       skew     kurtosis      count
+BTCUSDT     4.630529e+01  9.491072e+01   8.299822   141.600483  3057120.0
+ETHUSDT     3.842582e+02  7.059713e+02   9.093398   169.586167  3057120.0
+DOGEUSDT    1.369108e+06  5.155950e+06  23.437017  1024.306773  3057120.0
+SOLUSDT     3.012913e+03  5.849953e+03  12.318459   407.435329  3057120.0
+EURUSD_ask  1.421302e+02  1.646625e+02   3.217866    18.133943  1392696.0
+EURUSD_bid  1.504667e+02  1.729201e+02   3.311658    18.369071  1361174.0
+XAUUSD_ask  3.217810e-02  3.291596e-02   4.034834    90.565947  1326991.0
+XAUUSD_bid  3.220747e-02  3.281557e-02   3.094181    27.159213  1326991.0
+
+--- Log-Transformed Volume Statistics Summary ---
+                 mean       std      skew   kurtosis      count
+BTCUSDT      2.996372  1.260535  0.327483  -0.252827  3057120.0
+ETHUSDT      5.261503  1.158454  0.014551   0.335961  3057120.0
+DOGEUSDT    12.907991  1.552121 -0.387673   2.822809  3057120.0
+SOLUSDT      7.277302  1.228253 -0.313241   1.491597  3057120.0
+EURUSD_ask   4.412171  1.145742 -0.542708   0.468476  1392696.0
+EURUSD_bid   4.482432  1.136569 -0.604217   0.650510  1361174.0
+XAUUSD_ask   0.031195  0.030413  2.782706  19.612406  1326991.0
+XAUUSD_bid   0.031222  0.030480  2.611507  12.448130  1326991.0
+
+
 Than we want to consider what happens if we "skip" the bottom 5% or some other threshold.\
 after this we want to check if volume is mean reverting. \
 than we want to check if the volume is trend \
