@@ -1,5 +1,34 @@
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 our fundamental hypothesis.\
 the markets is a dynamic system continuously matching supply and demand in tradeoffs between costs, believed price, spontaneous supply-demand and dynamic evolving behaviors.\
 this means that forecasting supply and demand and their effects on the prices is the way to predict best trades.\
