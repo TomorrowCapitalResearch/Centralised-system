@@ -8,7 +8,7 @@ this means that forecasting supply and demand and their effects on the prices is
 
 
 
-## mass
+## mass/volume
 ```text
 === BTCUSDT Volume / Activity Statistics ===
   Raw Volume -> Mean: 46.31 | 5th Percentile: 1.88
@@ -109,9 +109,13 @@ we can see there are no 0-volume timesteps.
 
 
 
-## velocity
+## velocity / returns
 
-It is our goal to understand how returns behave
+It is our goal to understand how returns behave. Imagining returns to be velocities of movement of a particle, we set out to do the following.\
+A stream of particles, will have an say 4 outermost points of the beam, we are first attempting to understand the movements of those 4 points.\
+
+
+
 we first want to find correlations between their returns, just on the same timestep \
 than we want to find autocorrelations and check correlations to spreads \
 
