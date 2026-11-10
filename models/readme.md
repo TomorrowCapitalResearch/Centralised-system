@@ -11,7 +11,8 @@ It is this associated belief that leads us to the following tests.
 
 
 
-- we first want to know mean, std, skew, kurtosis, distributions. 
+- we first want to know mean, std, skew, kurtosis, distributions.
+Most are very close to normal distributed under a log transformation.
 
 --- Volume Statistics Summary ---
                     mean           std       skew     kurtosis      count
