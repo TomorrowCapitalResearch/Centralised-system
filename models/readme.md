@@ -1,5 +1,12 @@
 
 
+our fundamental hypothesis.\
+the markets is a dynamic system continuously matching supply and demand in tradeoffs between costs, believed price, spontaneous supply-demand and dynamic evolving behaviors.\
+this means that forecasting supply and demand and their effects on the prices is the way to predict best trades.\
+
+
+
+
 
 ## Volume
 ```text
@@ -103,6 +110,12 @@ we can see there are no 0-volume timesteps.
 
 
 ## returns
+
+we first have the ordinary returns: Open to open, high to high, low to low, close to close. \
+we first want to find correlations between their returns, just on the same timestep \
+
+
+
 
 
 | Type | mean | std | skew | kurtosis | min | max |
