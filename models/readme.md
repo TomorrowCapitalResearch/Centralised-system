@@ -6,6 +6,10 @@ this means that forecasting supply and demand and their effects on the prices is
 
 
 ## mass/volume
+it is our belief that "volume" can not be directly associated with mass, but that it can at the very least hint at the amount of attention or mass associated with a price or move.
+It is this associated belief that leads us to the following tests.
+
+
 
 we first want to know mean, std, skew, kurtosis, distributions. \
 Than we want to consider what happens if we "skip" the bottom 5% or some other threshold.\
@@ -13,9 +17,10 @@ after this we want to check if volume is mean reverting. \
 than we want to check if the volume is trend \
 than we want to check if the volume means move over time \
 such that the mean reversion happens around different means.\
-
-
-
+than we want to know if big or small volume is associated with big or small returns \
+than we want to look for volume profiles in "flat", "up", "down", "volatile",... periods \
+Check if "high volume" prices or price zones return within 10 days \
+check if "low volume & drop" prices or price zones return within 10 days.
 
 
 
