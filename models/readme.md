@@ -8,7 +8,7 @@ this means that forecasting supply and demand and their effects on the prices is
 
 
 
-## Volume
+## mass
 ```text
 === BTCUSDT Volume / Activity Statistics ===
   Raw Volume -> Mean: 46.31 | 5th Percentile: 1.88
@@ -109,9 +109,9 @@ we can see there are no 0-volume timesteps.
 
 
 
-## returns
+## velocity
 
-we first have the ordinary returns: Open to open, high to high, low to low, close to close. \
+It is our goal to understand how returns behave
 we first want to find correlations between their returns, just on the same timestep \
 than we want to find autocorrelations and check correlations to spreads \
 
@@ -133,6 +133,15 @@ than we want to find autocorrelations and check correlations to spreads \
 <img width="1083" height="711" alt="image" src="https://github.com/user-attachments/assets/52ce2ea2-013b-44e4-8ce4-224775221992" />
 
 <img width="790" height="637" alt="image" src="https://github.com/user-attachments/assets/427daf03-4af5-47f5-9ad0-2aa8ceb601b0" />
+
+
+
+
+
+
+
+
+
 
 ## volatilities
 
