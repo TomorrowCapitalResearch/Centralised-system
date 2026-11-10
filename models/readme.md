@@ -5,10 +5,20 @@ the markets is a dynamic system continuously matching supply and demand in trade
 this means that forecasting supply and demand and their effects on the prices is the way to predict best trades.\
 
 
-
-
-
 ## mass/volume
+
+we first want to know mean, std, skew, kurtosis, distributions. \
+Than we want to consider what happens if we "skip" the bottom 5% or some other threshold.\
+after this we want to check if volume is mean reverting. \
+than we want to check if the volume is trend \
+than we want to check if the volume means move over time \
+such that the mean reversion happens around different means.\
+
+
+
+
+
+
 ```text
 === BTCUSDT Volume / Activity Statistics ===
   Raw Volume -> Mean: 46.31 | 5th Percentile: 1.88
