@@ -1,7 +1,7 @@
 
 
 ## Volume
-'
+```text
 === BTCUSDT Volume / Activity Statistics ===
   Raw Volume -> Mean: 46.31 | 5th Percentile: 1.88
   Log Volume -> Mean: 2.9964 | 5th Percentile: 1.0581
@@ -87,8 +87,7 @@
   5th Percentile Value: 0.00
   Count <= 5th Percentile: 67,275
   Empirical Share: 5.07%
-  
-'
+```
 
 **Event-clock**\
 The event clock added to the asset data table, is therefore the jump in timesteps until an even is above the bottom 5% volume.
