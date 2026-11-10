@@ -113,6 +113,7 @@ we can see there are no 0-volume timesteps.
 
 we first have the ordinary returns: Open to open, high to high, low to low, close to close. \
 we first want to find correlations between their returns, just on the same timestep \
+than we want to find autocorrelations and check correlations to spreads \
 
 
 
