@@ -1,3 +1,5 @@
+*note: this page is not meant to be structured perfectly, it is meant to do something the AIs apparently can't, it is meant to summarise genuine ideas and expand on them as necessary. instead of putting out an ocean of text on things that do not work anyway.*
+
 # fundamental idea
 
 We ought to earn money because of:
