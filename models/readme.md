@@ -49,6 +49,10 @@ If you want formal anchors for this, two classic models from market microstructu
 
 # Our idea
 
+with the above as our premise, we have the following conditions.
+1. We must be able to get in and out of a trade, meaning we do not want to be in illiquid markets.
+2. 
+
 We ought to earn money because of:
 1. We utilise market "inevitabilities" to earn money on holding, buy, selling between events that are bound to happen.
 2. We utilise market "inefficiencies" to earn money on minimising errors in the markets.
