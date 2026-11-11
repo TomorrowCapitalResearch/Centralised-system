@@ -34,6 +34,8 @@ executions adjusted algos, adjust the market impact costs, instead of impact cos
 stochastic optimal control between speed and market impact
 
 market fragmentation, there are actually different venues, where price discrepancy doesn't match prices.
+lead-lag, price discrep isnt a thing.
 
+orderflow is everything, impact model
 
 careers.campus@gsacapital.com
