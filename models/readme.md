@@ -3,12 +3,7 @@
 # fundamental idea
 
 The fundamental idea in trading:
-```text
-Trading is the act of standing between counterparties whose valuations disagree, and capturing part of the gap. How big a gap exists, and how much of it you keep, depends on how much interest there is and how much competition you face.
-```
-
-
-Here's a tighter version. Your first statement treats fair value as a fixed property of the asset. Your extension shows why that's wrong: **fair value depends on who else is in the market.** The asset is worth whatever the next counterparty will pay, and that depends on whether anyone shows up, how many show up, and how well informed they are.
+ **fair value depends on who else is in the market.** The asset is worth whatever the next counterparty will pay, and that depends on whether anyone shows up, how many show up, and how well informed they are.
 
 ## The core statement
 
