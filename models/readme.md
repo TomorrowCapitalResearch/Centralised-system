@@ -1,6 +1,12 @@
 *note: this page is not meant to be structured perfectly, it is meant to do something the AIs apparently can't, it is meant to summarise genuine ideas and expand on them as necessary. instead of putting out an ocean of text on things that do not work anyway.*
 
 # fundamental idea
+
+The fundamental idea in trading:
+```text
+Trading is the act of standing between counterparties whose valuations disagree, and capturing part of the gap. How big a gap exists, and how much of it you keep, depends on how much interest there is and how much competition you face.
+```
+
 We ought to earn money because of:
 1. We utilise market "inevitabilities" to earn money on holding, buy, selling between events that are bound to happen.
 2. We utilise market "inefficiencies" to earn money on minimising errors in the markets.
