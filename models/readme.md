@@ -8,6 +8,7 @@ We ought to earn money because of:
 
 
 ## market inevitabilities
+Here we are considering things that WILL happen in the markets at some point, regardless of how much we try to reduce errors in prices.
 
 
 ### mean reversions
