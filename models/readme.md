@@ -12,7 +12,7 @@ We ought to earn money because of:
 - price discrepancies in currency pairs
 - price discrepancies in lead-lag between currencies
 - price discrepancies in venue-lag
-- 
+- relative value discrepancy within an asset
 
 
 ## market matching
