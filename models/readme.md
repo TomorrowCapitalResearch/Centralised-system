@@ -47,12 +47,7 @@ Here the expected exit price depends on interest (is anyone there?) and competit
 
 If you want formal anchors for this, two classic models from market microstructure each formalise part of it. Kyle (1985) covers informed traders versus noise traders and how price impact depends on depth. Glosten–Milgrom (1985) explains why spreads exist when some counterparties know more than others. Your framing essentially generalises both by letting participation and competition vary.
 
-
-
-
-
-
-
+# Our idea
 
 We ought to earn money because of:
 1. We utilise market "inevitabilities" to earn money on holding, buy, selling between events that are bound to happen.
