@@ -8,12 +8,17 @@ We ought to earn money because of:
 
 ## market inevitabilities
 
+- mean reversions
+- trends
+- volatility phases
+
 ## market inefficiencies
 - price discrepancies in currency pairs
 - price discrepancies in lead-lag between currencies
 - price discrepancies in venue-lag
 - relative value discrepancy within an asset
 - price discrepancy based on information
+- liquidity gaps
 
 
 ## market matching
