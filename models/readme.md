@@ -1,8 +1,9 @@
-## fundamental idea
+# fundamental idea
 
 We ought to earn money because of:
 1. We utilise market "inevitabilities" to earn money on holding, buy, selling between events that are bound to happen.
 2. We utilise market "inefficiencies" to earn money on minimising errors in the markets.
+3. We utilise market liquidity provision to earn money on providing liquidity
 
 
 
