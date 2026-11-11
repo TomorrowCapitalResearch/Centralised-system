@@ -11,6 +11,7 @@ We ought to earn money because of:
 - mean reversions
 - trends
 - volatility phases
+- event moves
 
 ## market inefficiencies
 - price discrepancies in currency pairs
