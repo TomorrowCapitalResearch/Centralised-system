@@ -40,7 +40,7 @@ Each source shows up at different horizons. Constraint and behavioural errors do
 ## As a single expression
 
 $$
-\text{Edge} \approx \underbrace{\mathbb{E}[\text{exit price} \mid \text{future counterparties}] - \text{entry price}}_{\text{gap you capture}} \;-\; \underbrace{\text{impact}(q, \text{depth})}_{\text{your own footprint}} \;-\; \text{costs}
+\text{Edge} \approx \underbrace{\mathbb{E}[\text{exit price} \mid \text{future counterparties}] - \text{entry price}}_{\text{gap you capture}}  - \underbrace{\text{impact}(q, \text{depth})}_{\text{your own footprint}} - \text{costs}
 $$
 
 Here the expected exit price depends on interest (is anyone there?) and competition (how much of the gap survives others getting to it first?).
