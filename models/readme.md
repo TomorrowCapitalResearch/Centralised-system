@@ -1,7 +1,6 @@
 *note: this page is not meant to be structured perfectly, it is meant to do something the AIs apparently can't, it is meant to summarise genuine ideas and expand on them as necessary. instead of putting out an ocean of text on things that do not work anyway.*
 
 # fundamental idea
-
 We ought to earn money because of:
 1. We utilise market "inevitabilities" to earn money on holding, buy, selling between events that are bound to happen.
 2. We utilise market "inefficiencies" to earn money on minimising errors in the markets.
@@ -10,10 +9,14 @@ We ought to earn money because of:
 
 ## market inevitabilities
 
-- mean reversions
-- trends
-- volatility phases
-- event moves
+
+### mean reversions
+
+### trends
+
+### volatility phases
+
+### Event moves/jumps
 
 ## market inefficiencies
 - price discrepancies in currency pairs
@@ -22,7 +25,6 @@ We ought to earn money because of:
 - relative value discrepancy within an asset
 - price discrepancy based on information
 - liquidity gaps
-
 
 ## market matching
 market making, 
