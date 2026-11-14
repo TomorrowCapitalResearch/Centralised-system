@@ -216,10 +216,13 @@ No tables are stored for this section in this copy, apart from the data-kit test
 | V-25 | Net taker buying predicts the next return (FL) | Imbalance over L minutes against the next L minutes, given the same-window return | Flow files, BTC, ETH, SOL: positive at 1 minute (BTC z 13.0, ETH 5.6, SOL 2.8), nothing at 5, negative at 15 minutes (BTC z -5.4, SOL -3.0) and at 60 (BTC z -3.6). | ✅ | NB |
 | V-26 | When flow and price disagree, the next move follows the flow | Same | No. At 1 minute the next move goes against the flow for BTC (z -7.6) and ETH (z -6.5). | 🔁 | NB |
 
+
 | V-27 | Corrected for dollar volume, is the volume going up or down over time? | ... | .... |  ... | ... |
 | V-28 | If the notional volume is decreasing over time, does the absolute return sizes decrease? | ... | ... | ... | ... |
 | V-29 | a "normal distributed" volume distribution( as in increasing until the peak of the drop, decreasing after the drop returns normalise) with a drop in price "lands" where the volume drops down, the accumulation distribution indicator helps here | ... | ... | ... | ... |
-| V-30 | When flow and price disagree, the next move follows the flow | Same | No. At 1 minute the next move goes against the flow for BTC (z -7.6) and ETH (z -6.5). | 🔁 | NB |
+| V-30 | The slope of the Accumulation distribution indicator correlates with the returns. Low ACC DIST correlates with a drop in the current price to relative value. Meaning price will reverse | ... | ... | ... | ... |
+| V-31 | a range of continuously growing volumes, than 1 or 2 decreasing volume, than 1 growing is the sign of a "settled level". Meaning the prices will either increase/decrease until that decreasing volume and than reverse a bit on that next growing volume. | ... | ... | ... | ... |
+| V-32 | A range say something like 10 out of 15( 20 out of 30, etc.) of "below average" volume indicates relates to a period of lower than usual absolute returns | ... | ... | ... | ... |
 
 ---
 
@@ -230,44 +233,67 @@ No tables are stored for this section in this copy. The "primary conclusions" li
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
 | P-01 | Chains of close-return signs predict the next close; adding open, high and low signs helps (H1) | Pattern tables trained on one half and scored on the other, 1 to 60 minute bars | Real but tiny: under 1 bp per bar out to 15 minutes. In the pattern backtest's training table, after 10 down closes the next is up 53.3% of the time (n 882); after 10 up closes, 45.3% (n 969). | 🟡 | PREV, NB |
-| P-02 | A trend is 3 or more of O, H, L, C rising together; it fades when 2 or more slow (H2) | Forward return after "k of 4 agree" and after fades | No continuation, except a two-day drift of 36 to 85 bps in crypto that looks like the common market factor. Path study: H, L, C all up is followed by up 47.9% of the time against 50.2% otherwise (PS-07). | ❌ | PREV, NB |
-| P-03 | Shrinking ranges are consolidation and lead to expansion; growing ranges are diffusion (H3) | Efficiency ratio against the mirror surrogate; next range against baseline | "Contraction leads to expansion" failed in 23 of 24 cells. Quiet stays quiet (PS-01). | ❌ | PREV, NB |
-| P-04 | Trend spec: slopes agree, spreads diverge, MA distance grows; the end shows as all three shrinking (TS) | Ingredients, trend anatomy, exit triggers | No result on file. | ⏳ | |
-| P-05 | "Glorified Fibonacci 1": a move that stays inside X% reverts more than 51% of the time (H4) | Fade bracket against the mirror | Asymmetric. For σ-sized moves over 5 to 15 minutes, fading a rise beat its null in 115 cells and lost in none; fading a drop won in 3 and lost in 17. | 🟡 | PREV |
-| P-06 | "Glorified Fibonacci 2": a move that breaches X% continues more than 51% of the time (H5) | Continuation bracket against the mirror | Modest, and stronger for drops. After a move of 2σ or more over 10 minutes, another full move the same way within the hour followed 42.4% of drops and 38.5% of rises; a full return followed 41.1% and 39.1%. | 🟡 | PREV |
-| P-07 | Pullback and continuation areas: back to the pre-move level against an equal extension, by volume (H6) | Revisit against the mirror, low against high volume | Low-volume moves continue more here (retrace to extend 0.80 to 0.87, against 0.91 to 0.98 for high volume, 3σ moves at 60 minutes). That is the opposite of V-09. | 🔧 | PREV |
-| P-08 | Retests of a swing high or low hold (H7) | Second and third touch, band in units of 1-hour volatility | Level-memory tests came back empty. Your "max price ± X%" version is a different test and is not built yet. | ❌ | PREV |
-| P-09 | Today opens below yesterday's close and low: the high ends above the open, or above yesterday's low (H8) | New York session gaps against the mirror | Null so far. | ❌ | PREV |
-| P-10 | The direction of the US open, from 5 minutes before to 15 minutes after, continues (H9) | Continuation and pullback entries | Null so far. | ❌ | PREV |
-| P-11 | Chain probabilities ("the stupid Markov version") | P(next bar up) after each run of 3 to 10 closes (`price_extra`) | Not run here. See P-01 for the length-10 table. | ⏳ | |
-| P-12 | OHLC bar states have different next-bar returns | State tables and transitions (`price_extra`) | Not run here. | ⏳ | |
 
-The mirror-surrogate null check for this section has no stored output in this copy either.
+| P-02 | A trend is 3 or more of O, H, L, C rising together; it fades when 2 or more slow (H2) | Forward return after "k of 4 agree" and after fades | No continuation, except a two-day drift of 36 to 85 bps in crypto that looks like the common market factor. Path study: H, L, C all up is followed by up 47.9% of the time against 50.2% otherwise (PS-07). | ❌ | PREV, NB |
+
+| P-03 | Shrinking ranges are consolidation and lead to expansion; growing ranges are diffusion (H3) | Efficiency ratio against the mirror surrogate; next range against baseline | "Contraction leads to expansion" failed in 23 of 24 cells. Quiet stays quiet (PS-01). | ❌ | PREV, NB |
+
+| P-04 | Trend spec: slopes agree, spreads diverge, MA distance grows; the end shows as all three shrinking (TS) | Ingredients, trend anatomy, exit triggers | No result on file. | ⏳ | |
+
+| P-05 | "Glorified Fibonacci 1": a move that stays inside X% reverts more than 51% of the time (H4) | Fade bracket against the mirror | Asymmetric. For σ-sized moves over 5 to 15 minutes, fading a rise beat its null in 115 cells and lost in none; fading a drop won in 3 and lost in 17. | 🟡 | PREV |
+
+| P-06 | "Glorified Fibonacci 2": a move that breaches X% continues more than 51% of the time (H5) | Continuation bracket against the mirror | Modest, and stronger for drops. After a move of 2σ or more over 10 minutes, another full move the same way within the hour followed 42.4% of drops and 38.5% of rises; a full return followed 41.1% and 39.1%. | 🟡 | PREV |
+
+| P-07 | Pullback and continuation areas: back to the pre-move level against an equal extension, by volume (H6) | Revisit against the mirror, low against high volume | Low-volume moves continue more here (retrace to extend 0.80 to 0.87, against 0.91 to 0.98 for high volume, 3σ moves at 60 minutes). That is the opposite of V-09. | 🔧 | PREV |
+
+| P-08 | Retests of a swing high or low hold (H7) | Second and third touch, band in units of 1-hour volatility | Level-memory tests came back empty. Your "max price ± X%" version is a different test and is not built yet. | ❌ | PREV |
+
+| P-09 | Today opens below yesterday's close and low: the high ends above the open, or above yesterday's low (H8) | New York session gaps against the mirror | Null so far. | ❌ | PREV |
+
+| P-10 | The direction of the US open, from 5 minutes before to 15 minutes after, continues (H9) | Continuation and pullback entries | Null so far. | ❌ | PREV |
+
+| P-11 | Chain probabilities ("the stupid Markov version") | P(next bar up) after each run of 3 to 10 closes (`price_extra`) | Not run here. See P-01 for the length-10 table. | ⏳ | |
+
+| P-12 | OHLC bar states have different next-bar returns | State tables and transitions (`price_extra`) | Not run here. | ⏳ | |
 
 ---
 
-## 5. Path study
+## 5. Trend/direction study
+
+
+## 6. Path study
 
 `ohlcv_path_research`. BTC, ETH, DOGE and SOL pooled, 1-hour bars unless stated, scored from 2025-01-01 in weekly blocks, q adjusted within the family. Each row compares event bars with control bars. Gold and daily bars mostly had too few samples. All rows are `NB`.
 
 | ID | Hypothesis | Result (event against control) | Status |
 |---|---|---|---|
 | PS-01 | After a quiet contraction, volatility stays low | Next-6-hour volatility ratio 0.48 against 0.90 (q 0.014). The "plateau" outcome follows 81% of the time against 42%. Still lower after 24 hours (0.68 against 0.98). | ✅ |
+
 | PS-02 | Narrowing ranges with falling volume: volatility stays low | 0.75 against 0.91 over 6 hours (q 0.014). Gone after 24 hours. | ✅ |
+
 | PS-03 | After an expansion, volatility stays high | 1.50 against 0.88 over 6 hours, 1.54 against 0.95 over 24 hours, 1.63 against 0.89 on 4-hour bars (q 0.014 each). | ✅ |
+
 | PS-04 | Both close gaps narrowing: lower volatility next | 0.87 against 0.90 (q 0.18). | ❌ |
+
 | PS-05 | Below the moving average: the next 6 hours are up | 51.8% against 48.0% (+3.9 pp, interval 1.4 to 6.2, q 0.014). Not above 50% after correction (q 0.22). Nothing at longer horizons or on 4-hour and daily bars. | 🟡 |
+
 | PS-06 | Above the moving average: the next 6 hours are down | 53.0% against 48.2% (+4.8 pp, interval 2.1 to 7.4, q 0.014). Against 50%: q 0.07. Nothing at longer horizons. | 🟡 |
+
 | PS-07 | H, L and C moving together: continuation | All up: up 47.9% against 50.2%. All down: down 47.0% against 51.2% (-4.2 pp, interval -7.2 to -1.5). It leans to reversal. | ❌ |
+
 | PS-08 | Below the moving average inside a downtrend, or inside an uptrend: up | Not significant (q 0.37 and 0.34). | ❌ |
+
 | PS-09 | U-shaped or ramping volume inside a trend: continuation | No effect (q 0.12 or higher in every cell). | ❌ |
+
 | PS-10 | Volume ramps, then drops: quieter next | Volatility ratio 0.81 against 0.97 (q 0.024). No effect on direction. | ✅ |
+
 | PS-11 | Path features forecast the next window's volatility | BTC, next 6 hours: R² 0.164 with price only, 0.222 with volume shapes, 0.231 with action, 0.254 with signatures. | ✅ |
+
 | PS-12 | Path features forecast the next window's direction | BTC, next 6 hours, price-only model: R² about -0.001, sign accuracy 48.6%. | ❌ |
 
 ---
 
-## 6. Volatility
+## 7. Volatility
 
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
@@ -277,7 +303,7 @@ The mirror-surrogate null check for this section has no stored output in this co
 
 ---
 
-## 7. Cross-asset
+## 8. Cross-asset
 
 Leader: BTCUSDT. All rows are `NB`. Returns are scaled by each asset's own trailing volatility.
 
@@ -311,7 +337,7 @@ Leader: BTCUSDT. All rows are `NB`. Returns are scaled by each asset's own trail
 
 ---
 
-## 8. Backtests
+## 9. Backtests
 
 All rows are `NB`.
 
@@ -385,7 +411,7 @@ Settle these before building on the results.
 
 ---
 
-## 10. Backlog
+## 11. Backlog
 
 ### A. Ideas written in the notebook, not tested yet
 
