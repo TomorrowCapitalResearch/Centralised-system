@@ -216,6 +216,11 @@ No tables are stored for this section in this copy, apart from the data-kit test
 | V-25 | Net taker buying predicts the next return (FL) | Imbalance over L minutes against the next L minutes, given the same-window return | Flow files, BTC, ETH, SOL: positive at 1 minute (BTC z 13.0, ETH 5.6, SOL 2.8), nothing at 5, negative at 15 minutes (BTC z -5.4, SOL -3.0) and at 60 (BTC z -3.6). | ✅ | NB |
 | V-26 | When flow and price disagree, the next move follows the flow | Same | No. At 1 minute the next move goes against the flow for BTC (z -7.6) and ETH (z -6.5). | 🔁 | NB |
 
+| V-27 | Corrected for dollar volume, is the volume going up or down over time? | ... | .... |  ... | ... |
+| V-28 | If the notional volume is decreasing over time, does the absolute return sizes decrease? | ... | ... | ... | ... |
+| V-29 | a "normal distributed" volume distribution( as in increasing until the peak of the drop, decreasing after the drop returns normalise) with a drop in price "lands" where the volume drops down, the accumulation distribution indicator helps here | ... | ... | ... | ... |
+| V-30 | When flow and price disagree, the next move follows the flow | Same | No. At 1 minute the next move goes against the flow for BTC (z -7.6) and ETH (z -6.5). | 🔁 | NB |
+
 ---
 
 ## 4. Price
