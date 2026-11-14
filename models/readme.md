@@ -43,6 +43,11 @@ $$
 \text{Edge} \approx \underbrace{\mathbb{E}[\text{exit price} \mid \text{future counterparties}] - \text{entry price}}_{\text{gap you capture}}  - \underbrace{\text{impact}(q, \text{depth})}_{\text{your own footprint}} - \text{costs}
 $$
 
+reference   v[i,t] = a[i] + b[i]·F[t]              b from a trailing window\
+deviation   d[i,t] = p[i,t] − v[i,t]               scaled by its own trailing volatility\
+state       s[t]                                   two or three states at most\
+forecast    E[r(i, t→t+h)] = b[i]·E[r(F) | s] − (1 − exp(−κ(s)·h))·d[i,t]
+
 Here the expected exit price depends on interest (is anyone there?) and competition (how much of the gap survives others getting to it first?).
 
 If you want formal anchors for this, two classic models from market microstructure each formalise part of it. Kyle (1985) covers informed traders versus noise traders and how price impact depends on depth. Glosten–Milgrom (1985) explains why spreads exist when some counterparties know more than others. Your framing essentially generalises both by letting participation and competition vary.
