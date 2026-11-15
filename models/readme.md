@@ -371,6 +371,83 @@ Leader: BTCUSDT. All rows are `NB`. Returns are scaled by each asset's own trail
 
 **Book facts.** Median spread 0.002 bps on spot and 0.016 bps on futures. Top-level imbalance has a 1-second autocorrelation of 0.83 and 0.73.
 
+
+N-11 — Microshocks arrive increasingly often before a larger move
+- Hypothesis: A rising arrival rate of small price shocks predicts a new large move beyond current volatility, recent returns, volume, and recent large-event history.
+- Data: Liquid assets, one-minute OHLCV.
+- Features: Counts of microshocks in each of the last six 10-minute blocks; latest-10-minute count minus the earlier-50-minute count divided by five; elapsed time since the last microshock; shock magnitudes. The count slope tests acceleration rather than just elevated activity.
+- Outcome: A new large-move event within the next 60 minutes. Test up and down events separately as secondary outcomes.
+- Null: M0; also compare equally volatile periods with similar cumulative returns and volume but stable or falling shock arrival rates.
+- Pass: Positive held-out incremental event-probability value, including in the first-event stratum. An effect confined to the aftershock stratum is useful but must be labelled accordingly.
+- Next model only if justified: Signed marked Hawkes intensities, or a discrete-time analogue for minute-binned observations. Do not fabricate precise within-minute event times.
+- Status: Untested.
+N-12 — One-sided shocks become less reversible before directional persistence
+- Hypothesis: Given the same total volatility and past return, increasingly one-sided shocks whose price impact remains after five minutes predict further movement in that direction.
+- Features: RV+ = sum(r^2 for r > 0), RV- = sum(r^2 for r < 0), and A = (RV+ - RV-) / (RV+ + RV-) over the last hour. Separately measure five-minute retention after completed microshocks: sign(r_s) * log(C_(s+5)/C_(s-1)) / abs(r_s). A value near one means the initial displacement remains; zero means it has reversed at that checkpoint. Use only shocks with s+5 <= t, require a minimum count, and otherwise mark retention missing.
+- Outcome: sign(A) times the next-hour return, plus directional trend probability. Test the opposite sign as a declared alternative, not a post-hoc relabelling of failure.
+- Null: M0 including the past-hour return and total realised variance; assess imbalance, retention, and their interaction separately before combining them.
+- Why new: It tests shock polarity and observed recovery, rather than the already weak volume-times-return signal or simple runs of candle signs.
+- Literature boundary: Realised semivariance has evidence for volatility forecasting in equities [2]. That does not demonstrate this proposed directional effect in crypto.
+- Status: Untested.
+N-13 — Price becomes more responsive to a given amount of trading
+- Hypothesis: An unusually large and increasing range for the prevailing participation level precedes larger future movements.
+- Features: Fit a trailing model of log positive range on log positive quote notional, prior volatility and time of week. Use the out-of-sample range residual and its recent change. Compare against the absolute-return residual as a separately declared variant.
+- Outcome: Next-hour large-move probability and range. Direction is a separate test using an explicitly signed feature; the range residual has no inherent buy/sell direction.
+- Null: M0 plus raw range and volume, including their ordinary nonlinear relationship.
+- Interpretation: A possible proxy for changing liquidity sensitivity. OHLCV alone cannot identify depth depletion, trader intent, or causal price impact. Exclude or flag zero-volume/zero-range observations rather than hiding them behind a tiny denominator.
+- Why new: V-05 establishes co-movement of activity and price variation. This asks whether an unusual change in that relationship forecasts a later event.
+- Status: Untested.
+N-14 — Two-sided oscillation converts into directional displacement
+- Hypothesis: After substantial back-and-forth activity, the start of more efficient directional movement predicts continuation beyond an equivalent momentum signal without the preceding oscillation.
+- Features: In the earlier 45 minutes, measure high summed log high–low ranges with low net displacement. In the latest 15 minutes, measure increasing efficiency ER = abs(sum(r)) / sum(abs(r)), directional close location, and overlap between adjacent candle ranges. Set ER missing in an entirely flat window.
+- Outcome: Next-hour signed return and sustained-trend probability, using the latest 15-minute direction known at t.
+- Null: Match the same recent momentum, current volatility, volume, and latest efficiency but without the earlier high-oscillation condition. Test whether the sequence adds value beyond its individual ingredients.
+- Why new: This is a transition from repeated excursions to retained displacement; it does not repeat the rejected claim that quiet ranges must expand.
+- Timing: This is early trend confirmation. The first directional movement is already observed. OHLC bars reveal extrema and closes, not the exact within-bar sequence of excursions.
+- Status: Untested.
+N-15 — A sequential drift change identifies hourly trends earlier
+- Hypothesis: A causally detected change in return drift, supported across short and longer windows, predicts remaining movement over the next 1–4 hours.
+- Features: An online two-sided cumulative-sum detector on standardised returns; signed returns/efficiency over 15, 60 and 240 minutes; an explicit record of the first detection time. Set the detector threshold using training data and a chosen false-alert rate. Begin with one detector and a small fixed set of horizons.
+- Outcome: Remaining signed return from the observable detection time, trend-label probability, and adverse excursion. Compare at completed hourly endpoints as the primary analysis, then study minute-level updates separately.
+- Null: Ordinary 1-hour and 4-hour momentum, matched on signal size and volatility; assess drift detection and cross-horizon agreement separately.
+- Why new: P-02/PS-07 used aligned highs/lows/closes. This asks whether a sequential change detector adds information after controlling for existing momentum.
+- Timing: Never move the signal timestamp back to the low/high that was identified only afterwards. Detection delay is part of the result.
+- Status: Untested.
+N-16 — Patterns transfer better when time is measured by participation
+- Hypothesis: A fixed pattern of price/volume behaviour predicts the next hourly outcome more consistently in equal-notional-volume bars than in equal-clock-time bars. Shortening bar completion times may add further information.
+- Construction: Set each asset's notional threshold from prior complete days; for example, the prior 20-day median daily quote notional divided by 288. Freeze it for the next day. The numerical target is a starting choice, not an optimum.
+- Minute-only approximation: Aggregate whole completed minute bars until the threshold is crossed. Keep overshoot and elapsed time. Do not split or reorder unknown intraminute trades. Exact volume bars require trade-level data.
+- Features: Apply a prespecified price-pattern feature to the completed volume bars; include bar duration relative to normal duration for that time of week.
+- Outcome: The same next 60/240 clock minutes used by the time-bar model. Comparing next five volume bars with next five minutes would confound the horizon.
+- Null: Time-bar features with equivalent elapsed-history coverage and controls for recent volume/volatility; compare at the same real decision timestamps.
+- Status: Untested.
+N-17 — Broadening small-shock activity precedes a market event
+- Hypothesis: A rising share of liquid assets experiencing small shocks predicts a target asset's next large move beyond its own state and BTC/ETH activity.
+- Features: In each completed five-minute interval, calculate the fraction of eligible peers with upward and downward microshocks, change in these fractions over 30 minutes, and concentration in a few leaders versus broad participation. Exclude the target from its peer signal.
+- Outcome: Target-asset jump probability and direction over the next hour; market-wide event probability as a distinct secondary outcome.
+- Null: Own state, BTC and ETH returns/volatility/shock counts, and a trailing market factor. Run raw and market-residual versions; both can be useful, but they answer different questions.
+- Why new: X4 tests propagation after crashes. This version explicitly tests broadening small disturbances before the next large event, separating first-event and aftershock periods.
+- Data controls: Common UTC close times, source latency where known, stale-price filters, and universe membership decided from information then available. AURORA/CRO should be excluded from the initial liquid-universe test described in your log. Resample all assets jointly by time; correlated coins are not independent replications.
+- Status: Untested.
+N-18 — Spread widening with one-sided depth withdrawal precedes movement
+- Hypothesis: Quote spread widening combined with depletion on one side of the book predicts future mid-price direction more effectively than spread widening alone.
+- Features: Quoted spread in basis points and its trailing percentile, bid/ask depth changes, depth imbalance, and order-flow imbalance where event data allow. Spread alone is unsigned.
+- Outcome: Mid-price movement over 1–5 minutes first; then whether it survives at 15–60 minutes and remains executable.
+- Null: Spread-only and volatility/momentum baselines; compare depth effects conditional on current flow and book state.
+- Evidence boundary: Order-flow imbalance and depth have a microstructure basis [3], but the cited contemporaneous relation is not evidence of this proposed forecasting edge.
+- Prerequisite: Repair B1–B3's unstable estimates; verify price units, crossed books, timestamp alignment, stale quotes, and near-zero regressors. Collect substantially more independent days. The present 3–4-day book sample can support pipeline checks, not a durable alpha claim.
+- Data distinction: A high–low candle range is not a quoted bid–ask spread. This test cannot be inferred from plain OHLCV.
+- Status: Untested; deferred until book data are reliable.
+N-19 — A normalised pattern generalises to unseen assets and later dates
+- Hypothesis: The same prespecified mapping from normalised features to outcomes works on assets absent from model fitting, in a later test period.
+- Test: Compare volatility units, robust seasonal z-scores, and trailing percentile ranks using the same model, feature set and temporal splits. Hold out complete assets AND later dates. The held-out asset's own past may update an unsupervised scaler; its outcomes cannot be used to tune the mapping.
+- Outcomes: Incremental predictive value, calibration, and effect size across held-out assets and regimes. Report market-factor and asset-specific results separately.
+- Null: Per-asset models, raw-feature pooled models, and M0. Similar-looking charts without held-out outcome improvement do not pass.
+- Status: Untested.
+
+
+
+
 ---
 
 ## 9. Backtests
