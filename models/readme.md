@@ -234,7 +234,7 @@ No tables are stored for this section in this copy. The "primary conclusions" li
 |---|---|---|---|---|---|
 | P-01 | Chains of close-return signs predict the next close; adding open, high and low signs helps (H1) | Pattern tables trained on one half and scored on the other, 1 to 60 minute bars | Real but tiny: under 1 bp per bar out to 15 minutes. In the pattern backtest's training table, after 10 down closes the next is up 53.3% of the time (n 882); after 10 up closes, 45.3% (n 969). | 🟡 | PREV, NB |
 
-| P-02 | A trend is 3 or more of O, H, L, C rising together; it fades when 2 or more slow (H2) | Forward return after "k of 4 agree" and after fades | No continuation, except a two-day drift of 36 to 85 bps in crypto that looks like the common market factor. Path study: H, L, C all up is followed by up 47.9% of the time against 50.2% otherwise (PS-07). | ❌ | PREV, NB |
+| P-02 | A trend is 3 or more of O, H, L, C rising together; it fades when 2 or more slow (H2) We would expect this to continue for | Forward return after "k of 4 agree" and after fades | No continuation, except a two-day drift of 36 to 85 bps in crypto that looks like the common market factor. Path study: H, L, C all up is followed by up 47.9% of the time against 50.2% otherwise (PS-07). | ❌ | PREV, NB |
 
 | P-03 | Shrinking ranges are consolidation and lead to expansion; growing ranges are diffusion (H3) | Efficiency ratio against the mirror surrogate; next range against baseline | "Contraction leads to expansion" failed in 23 of 24 cells. Quiet stays quiet (PS-01). | ❌ | PREV, NB |
 
@@ -256,9 +256,33 @@ No tables are stored for this section in this copy. The "primary conclusions" li
 
 | P-12 | OHLC bar states have different next-bar returns | State tables and transitions (`price_extra`) | Not run here. | ⏳ | |
 
+
+| P-13 | A trend is 3 or more of O, H, L, C rising together for a period of 3 or more timesteps; it fades when 2 or more slow (H2) for 2 or more timesteps |  |  |  |  |
+| P-14 | Discontinuations between close,low and open, say last close and low is above current open, this timestep's price will move up towards the prices it dropped from  |   |  |  |  |
+| P-15 | Shrinking ranges have shrinking absolute returns |  |  |  |  |
+| P-16 | expanding ranges have expanding absolute returns |  |  |  |  |
+| P-17 | After a range of new All time highs(say the new all time high is being pushed upwards for a while until it turns around) and than drops by 2%, that downwards trend continues, with noise, but with clear downwards stability |  |  |  |  |
+| P-18 | After new all time highs and than downwards trend continuation, we may reach a "global bottom" for a bit, from which there is a rebounce, we detect that rebounce by running continued bottom price since last all time high, than confirming with a positive 2% return. |  |  |  |  |
+| P-19 | After a global bottom a "global maximum" is a repeat of the if the price continues increasing after the global bottom and is confirmed after a rebounce downwards. |  |  |  |  |
+| P-20 | a move that moves up but stays inside X% with low volume reverts more than 51% of the time (H4) |  |  |  |  |
+| P-21 | a move that moves up but breaches X% with high volume continues more than 51% of the time (H5) |  |  |  |  |
+| P-22 | running a linear regression between lows has a predictive ability on the next few lows, if a low is outside(below) of the expected confidence area, that is indicative of a drop within 10 minutes to 1 hour |  |  |  |  |
+| P-23 | running a linear regression between highs has a predictive ability on the next few high, if a high is outside(above) of the expected confidence area, that is indicative of a jump within 10 minutes to 1 hour |  |  |  |  |
+| P-24 | A rolling cumulative volume * return action principle over all of the prices, with taker buy volume added on multiple horizons, say 20, 60, 1440, 7 days, can help us understand if the price has been misplaced a bit and will go up or down to match the rolling action principle indicator |  |  |  |  |
+| P-25 | A 1 hour drop in prices with accumulated returns below -10% is likely to be followed by another drop in prices to a further down level below -15% within 1 to 3 days  |  |  |  |  |
+
 ---
 
 ## 5. Trend/direction study
+
+| ID | Hypothesis | Result (event against control) | Status |
+|---|---|---|---|
+| TR-01 | A window of 3 to 10 pips with positive close returns is a trend, the cumulative return is in the upper 20% |  |  |  |  |
+| TR-02 | Trends(the cumulative return is in the upper 20%) with varying window lenghts, 3 to 20 pips, have a short range of "Stupid markov indicator windows", like "UUUDUUUDU" |  |  |  |  |
+| TR-03 | Trends(the cumulative return is in the upper 20%) has quite similar yet specific volume profiles. |  |  |  |  |
+| TR-04 | Trends(the cumulative return is in the upper 10%) has lows getting higher, highs getting higher, they are outside of the confidence area of the rolling regressions for highs and lows. |  |  |  |  |
+| TR-05 | Trends(the cumulative return is in the upper 10%) trends end with the last two pips having lower absolute returns than the previous 2 pips, same goes for volume |  |  |  |  |
+| TR-06 | The short window volatility(3, 5, or 10) of a long term Trends(the cumulative return is in the upper 10%)(60,240, 1440) lowers relative to a longer rolling window volatility(30,60,90) before the trend fades |  |  |  |  |
 
 
 ## 6. Path study
@@ -268,28 +292,32 @@ No tables are stored for this section in this copy. The "primary conclusions" li
 | ID | Hypothesis | Result (event against control) | Status |
 |---|---|---|---|
 | PS-01 | After a quiet contraction, volatility stays low | Next-6-hour volatility ratio 0.48 against 0.90 (q 0.014). The "plateau" outcome follows 81% of the time against 42%. Still lower after 24 hours (0.68 against 0.98). | ✅ |
-
 | PS-02 | Narrowing ranges with falling volume: volatility stays low | 0.75 against 0.91 over 6 hours (q 0.014). Gone after 24 hours. | ✅ |
-
 | PS-03 | After an expansion, volatility stays high | 1.50 against 0.88 over 6 hours, 1.54 against 0.95 over 24 hours, 1.63 against 0.89 on 4-hour bars (q 0.014 each). | ✅ |
 
 | PS-04 | Both close gaps narrowing: lower volatility next | 0.87 against 0.90 (q 0.18). | ❌ |
 
 | PS-05 | Below the moving average: the next 6 hours are up | 51.8% against 48.0% (+3.9 pp, interval 1.4 to 6.2, q 0.014). Not above 50% after correction (q 0.22). Nothing at longer horizons or on 4-hour and daily bars. | 🟡 |
-
 | PS-06 | Above the moving average: the next 6 hours are down | 53.0% against 48.2% (+4.8 pp, interval 2.1 to 7.4, q 0.014). Against 50%: q 0.07. Nothing at longer horizons. | 🟡 |
 
 | PS-07 | H, L and C moving together: continuation | All up: up 47.9% against 50.2%. All down: down 47.0% against 51.2% (-4.2 pp, interval -7.2 to -1.5). It leans to reversal. | ❌ |
 
 | PS-08 | Below the moving average inside a downtrend, or inside an uptrend: up | Not significant (q 0.37 and 0.34). | ❌ |
-
 | PS-09 | U-shaped or ramping volume inside a trend: continuation | No effect (q 0.12 or higher in every cell). | ❌ |
 
 | PS-10 | Volume ramps, then drops: quieter next | Volatility ratio 0.81 against 0.97 (q 0.024). No effect on direction. | ✅ |
-
 | PS-11 | Path features forecast the next window's volatility | BTC, next 6 hours: R² 0.164 with price only, 0.222 with volume shapes, 0.231 with action, 0.254 with signatures. | ✅ |
 
 | PS-12 | Path features forecast the next window's direction | BTC, next 6 hours, price-only model: R² about -0.001, sign accuracy 48.6%. | ❌ |
+
+
+| PS-13 | close price is Below the moving average-2sigma of the average distance to the moving average, the accumulative return is going to be positive within the next 10 minutes | ... | ... |
+| PS-14 | close price is above the moving average+2sigma of the average distance to the moving average, the accumulative return is going to be negative within the next 10 minutes | ... | ... |
+| PS-15 | most of H, L and C moving together: continuation for a period of 5 to 30 minutes | mostly up for 5 to 30 mins.: up X% against Y%. mostly down for 5 to 30 mins: down X% against Y% |  |
+| PS-16 | "path extremes" have an above 51% chance of predicting the next direction. If a pip is at the same time "above the moving averages", say at the same time above moving average 10, 20, 60 with at least 1.5 standard deviation distance from moving average on both the high, low and close. The sign indicator is "up, up, up, up, up" and the cumulative return is in the top 10% quantile. Along with the volume having been ramping up. We are more than 51% likely to have a positive return on the next pip as well. | ... | ... |
+| PS-17 | "path extremes" have an above 51% chance of predicting the next direction. If a pip is at the same time "below the moving averages", say at the same time below moving average 10, 20, 60 with at least 1.5 standard deviation distance from moving average on both the high, low and close. The sign indicator is "down, down, down, down, down " and the cumulative return is in the bottom 10% quantile. Along with the volume having been ramping up. We are more than 51% likely to have a negative return on the next pip as well. | ... | ... |
+
+
 
 ---
 
@@ -311,22 +339,30 @@ Leader: BTCUSDT. All rows are `NB`. Returns are scaled by each asset's own trail
 |---|---|---|---|---|
 | X1-a | Returns are correlated across assets | Correlation at 5 minutes to 1 day | With BTC: 0.52 to 0.73 for most coins at every horizon, ETH 0.82 to 0.85. Thin coins rise with the horizon (AURORA 0.07 to 0.38, CRO 0.47 to 0.62). FX about 0 to 0.16, metals 0.13 to 0.26. Mean coin-to-coin 0.56 to 0.59. | ✅ |
 | X1-b | Coins are tied to BTC more in crashes than in rallies | Share of BTC's worst 5% bars that are also the coin's worst 5%, against the same for the best 5% | 1-hour bars: 47% to 58% in the lower tail (ETH 67%) against 35% to 47% in the upper tail and 28% to 42% implied by correlation alone. Lower minus upper is +10 to +15 pp (z 7 to 10), and +16 to +36 pp on daily bars. Robust on 19 of 21 coins. Nothing in FX or metals. | ✅ |
+
 | X2-a | BTC leads the other coins at 1 minute | Slope of the coin's next bar on BTC's last bar, own bar held fixed; then one bar late | At once: every coin (z 11 to 59). One bar late: about zero for liquid coins (z -2.0 to 5.8), large only for AURORA (19.2) and CRO (24.4), whose closes are unchanged in 51% and 34% of minutes. Following BTC's sign earned 0.1 to 0.5 bps on the next minute before costs. | 🟡 |
 | X2-b | Other assets lead BTC | The same in reverse | ETH leads BTC more than it follows (z -5.3). Gold, silver and GBPUSD lead BTC at 1 and 5 minutes more than they follow (z -2.2 to -6.2). | ✅ |
 | X2-c | After a BTC jump (a 1-minute bar of 3σ or more) the others continue and catch up | 34,780 jumps. Catch-up = the coin's continuation minus β × BTC's own | +0.6 to +1.7 bps of catch-up in the next minute (z 7 to 16), up to about 2.6 bps over 5 to 60 minutes. Robust on 19 of 21 coins for the next 1 and 5 minutes, 17 to 18 for 15 and 60. Mostly gone for 5-minute jump bars (10 of 21). | ✅ |
-| X5 | Net taker buying in BTC predicts the other coins beyond both prices | Slope on the coin's next L minutes, given both returns and the coin's own flow | It predicts lower returns: about -0.009 over 15 minutes (robust on 14 of 19 coins) and -0.016 over 60 minutes (19 of 19). Nothing at 5 minutes. | 🔁 |
+
 | X3-a | The gap to β × BTC, or to β × market, closes (κ above 0) | 5-minute bars, β from a trailing 3-day regression, slope of the next W bars' gap on today's gap D | Mostly no: 9 robust closing, 6 robust widening, 759 not robust. Over 1 hour it closes on a few coins (LTC z 3.3, NEAR 3.9, XRP 3.4, DOGE 2.6 to 3.2) and widens on TRX (z -5.6), AURORA and ETH. Over 1 day the sign is mostly negative. | ❌ |
 | X3-b | Fading a gap of 2 or more pays | Return of holding -sign(D) × (coin - β × BTC) for W bars | 1 hour: positive on 16 of 21 coins, +0.2 to +10 bps per trade before costs (NEAR 10.0, CRO 9.4, DOGE 8.2, XRP 6.6), but robust on only 2; negative on TRX, AURORA, BNB, ETH, FIL. 1 day: -9 to -156 bps on 18 of 21 coins. | 🟡 |
 | X3-c | The gap closes faster when the factor is calm | Slope when BTC's volatility is below against above its median | No consistent difference. | ❌ |
+
+
 | X4-a | When BTC crashes (a 1-hour bar beyond 3σ down) the others crash in the same hour | Hourly panel | 31% to 50% of the time (ETH 63%) against a usual 0.7% to 1%. | ✅ |
 | X4-b | After a BTC crash, coins that did not crash follow later | Excess over the usual rate | +3.7 pp within 1 hour (robust on 19 of 21), +6.2 pp within 6 hours (16 of 21), +6.6 pp within 24 hours (13 of 21). | ✅ |
 | X4-c | It spreads as a crash: down more than up | Excess for down-jumps minus excess for up-jumps | Robust on only 8 of 21 within 1 hour and 2 of 21 within 6 hours. | 🟡 |
 | X4-d | A broad crash (a quarter of the coins in one hour) is followed by another | 467 broad crashes | Another one is +5.9 pp more likely within 1 hour (z 5.3), +9.5 pp within 6 hours (z 6.0), +11.0 pp within 24 hours (z 5.3). Broad crashes repeat more than narrow ones: +4.6 pp within 1 hour (z 4.0). | ✅ |
 | X4-e | FX and metals jump when crypto crashes | Same hour and the next | +5.6 to +6.7 pp in the same hour (z 3.3 to 3.7), almost all of it from the second half of the sample. | 🟡 |
+
+| X5 | Net taker buying in BTC predicts the other coins beyond both prices | Slope on the coin's next L minutes, given both returns and the coin's own flow | It predicts lower returns: about -0.009 over 15 minutes (robust on 14 of 19 coins) and -0.016 over 60 minutes (19 of 19). Nothing at 5 minutes. | 🔁 |
+
+
 | F1-a | Futures lead spot | BTC order-book mids on 250 ms steps, 3 common days | Slope 0.31 at 0.25 s (z 69) and 0.26 at 1 s and 5 s. One step late: 0.07 to 0.09 (z 9 to 31). Spot to futures: 0.01 to 0.02. Worth 0.2 to 0.3 bps per step before costs. | ✅ |
 | F1-b | One side closes the basis | Basis against its 15-minute average | Basis mean -4.5 bps, sd 0.71 bps, half-life about 3.8 seconds. The closing tests returned unstable slopes (hundreds to thousands, the two halves far apart). | 🔧 |
 | F1-c | A jump on one side is followed on the other | Bars of 4σ or more | After a spot jump, futures continue 0.4 to 0.7σ (z 4 to 19). Several futures-jump rows blew up. | 🔧 |
 | F1-d | The same on 1-minute futures bars over years | Needs futures klines | No futures klines in the data folder. | ⏳ |
+
 | B1 | Order-book imbalance and the microprice gap predict the next mid move | 250 ms grid, next 1 to 60 seconds, BTC spot (4 days) and futures (3 days) | No robust effect. Slopes explode in one half (for example 50,088 against 0.29). | 🔧 |
 | B2 | A wide spread precedes a bigger move | Same | No robust effect, same problem. | 🔧 |
 | B3 | Trade flow predicts the next move | Net aggressive buying over w seconds | No robust effect, same problem. | 🔧 |
