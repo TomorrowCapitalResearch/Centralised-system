@@ -475,6 +475,7 @@ N-19 — A normalised pattern generalises to unseen assets and later dates
 
 
 
+### Additional hypothesis
 
 
 
