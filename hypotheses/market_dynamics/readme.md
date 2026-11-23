@@ -1,3 +1,11 @@
+time (done for now) \
+volume 
+volatility \
+prices \
+
+
+
+
 # fundamental idea
 
 The fundamental idea in trading:
