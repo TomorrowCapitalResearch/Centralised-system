@@ -1,5 +1,5 @@
 time (done for now) \
-volume 
+volume (done for now) \
 volatility \
 prices \
 
