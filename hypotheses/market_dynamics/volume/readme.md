@@ -89,3 +89,63 @@
 - **Holds:** volume and volatility move together (V-11/12, RV-05/06/09); volume is seasonal (VT-01/02/04/05); volume has long memory and its regimes persist (V-03, V-04); low-volume drops get recovered (VP-02); low-volume gaps fill more often (VP-13); busy 30-day price areas get revisited (VP-14); yesterday's POC acts as a magnet on low-volume days (VP-12b); very low A/D leads to a bounce (VA-07).
 - **Opposite of the expectation:** short-horizon volume × return and taker-flow signals predict **reversal**, not continuation (VP-16–21); low-volume periods are, if anything, *up* days (V-10, V-16); volume spikes are followed by more high volume, not less (RV-07, V-05).
 - **Volume adds nothing over price:** forecasting realised volatility (RV-03/04), the action principle (VP-19), and the "settled level" volume pattern (VA-08).
+
+
+# Volume distribution, memory and duration
+
+[Category index](../START_HERE.md) · [Source guide](../source_index/Sources.md)
+
+**How does participation evolve on its own?** Distribution, moving baseline, persistence, overshoot and lengths of spells.
+
+The earlier register describes volume as both mean reverting and persistent. Its six-coin notional study found a pooled log trend of −0.11 per year, with SOL moving in the other direction. A changing centre matters for both claims. (LOG/V-02, LOG/V-27.)
+
+**Test design.** Distinguish base-asset quantity, quote notional and trade count. Keep a separate indicator for genuine zero-volume bars and flag outages. Fit seasonal medians, trends and thresholds on earlier observations.
+
+### Your current rows
+
+| ID | Hypothesis | Test or next comparison | Reported result and scope | Assessment | Source |
+| --- | --- | --- | --- | --- | --- |
+| <a id="r-v-01"></a>**V-01** | Positive volume is approximately lognormal. | Fit lognormal alternatives by asset, year and hour-of-week on positive observations. Score held-out central and tail quantiles and report the zero fraction. | An older notebook note says this held except gold. It supplies no fit table for this comparison. FX and metals used tick volume in the study log. | Historical note only · supplied “expected true” | Current list + [LOG/V-01](#r-log-v-01) (NOTE) |
+| <a id="r-v-02"></a>**V-02** | Volume reverts toward a meaningful local centre. | Fit seasonal log-volume residuals against a local centre estimated through t. Measure how conditional deviations decay after high and low states. | The earlier summary says roughly mean reverting. Its test cell instead describes strong memory. The centre and horizon differ across interpretations. | Conflicting notes · supplied “expected vague” | Current list + [LOG/V-02](#r-log-v-02) (NOTE) |
+| <a id="r-v-03"></a>**V-03** | Volume has long memory after removing seasonality and slow shifts. | Compare short-memory, fractionally integrated and changing-mean models on held-out block forecasts and on persistence at longer lags. | The old V-02 notes long- and short-memory behaviour. No fractional-memory estimate or uncertainty is reported there. | Open with related notes · supplied “expected vague” | Current list + [LOG/V-02](#r-log-v-02) (NOTE) |
+| <a id="r-v-04"></a>**V-04** | Above-normal volume tends to be followed by below-normal volume, and vice versa. | Estimate the probability of crossing to the opposite side of a frozen seasonal centre at 15 min, 1 h and 1 day. Match starting distance to a fitted persistence null. | Open. A decline from high volume toward its mean does not establish an overshoot below it. | Open · supplied “expected true” | Current list |
+| <a id="r-v-05"></a>**V-05** | The waiting time until the next high-volume spell is predictably different across current states. | Define a high spell from past seasonal quantiles. From times outside a spell, estimate time to the next onset and compare forecasts with an hour-of-week hazard. | Open. Waiting for an onset and decay of a volume deviation have different endpoints. | Open · supplied “expected true” | Current list |
+| <a id="r-v-06"></a>**V-06** | The remaining duration of a high-volume spell can be forecast from information at its onset or during the spell. | Use an onset threshold and prespecified exit rule. Compare residual-life forecasts at spell age a with a geometric-duration benchmark, accounting for right censoring. | Open. Track total duration at onset and remaining duration for spells already in progress. | Open · supplied “expected true” | Current list |
+| <a id="r-v-07"></a>**V-07** | The mean volume of an asset drifts over time. | Compare rolling or piecewise mean log-volume with a fixed seasonal baseline using a common hold-out. Repeat in base units and quote notional. | Earlier chunks showed a fluctuating mean and long-run decline. The six-coin study estimated pooled annual log slopes of −0.26 for base volume and −0.11 for dollar volume. | Historical evidence · supplied “expected true” | Current list + [LOG/V-03](#r-log-v-03) (NOTE), [LOG/V-27](#r-log-v-27) (HYP) |
+| <a id="r-rv-01"></a>**RV-01** | The rolling sum of volume is approximately lognormal. | For each window W, compare fitted distributions of positive non-overlapping W-bar totals on held-out dates. Repeat on overlapping windows with block uncertainty. | Open for the distribution of sums. Lognormal single-bar volume would not establish lognormal sums. | Open · supplied “expected true” | Current list |
+| <a id="r-rv-02"></a>**RV-02** | The rolling mean of volume is approximately lognormal. | Use the same complete fixed-W windows as RV-01. The mean is the sum divided by W, which only shifts its logarithm by a constant. Check variable-count or incomplete windows separately. | Same distributional question as RV-01 for fixed complete windows. | Linked specification · supplied “expected true” | Current list |
+| <a id="r-rv-07"></a>**RV-07** | An unusually high rolling mean of volume is followed by a period below its expected rolling mean. | Start at a high trailing-window mean. Keep its expected seasonal centre fixed, evaluate a disjoint next window, and estimate undershoot against a persistence null. | Open. Overlapping rolling windows can make a return toward the centre mechanically persistent. | Open · supplied “expected true” | Current list |
+| <a id="r-vt-06"></a>**VT-06** | The trend in activity can differ when volume is measured in dollars rather than coins. | Estimate trends in log daily quote notional and base volume by asset and year. Use observed quote notional or label price × base volume as an approximation. | Earlier six-coin annual log slopes were −0.11 pooled for dollar volume and −0.26 for coin volume. Dollar decline was robust on 4/6. SOL’s dollar volume rose. | Supported in earlier sample | Current list + [LOG/V-27](#r-log-v-27) (HYP) |
+
+### Proposed tests
+
+Each row is open. The data column identifies the inputs needed for the comparison.
+
+| ID and origin | Hypothesis | Decisive comparison | Data | Source and related IDs |
+| --- | --- | --- | --- | --- |
+| <a id="r-vm-01"></a>**VM-01** · Follow-up | Apparent non-lognormal volume comes from pooling zeros and different activity states. | Compare a zero-mass plus conditional lognormal model with a zero-mass plus gamma or heavier-tailed positive model. Fit by asset and active session. Compare held-out log scores and 95th/99th percentile errors. | Base/quote volume with outage flags. FX tick counts separate | Proposed from V-01 and RV-01. [V-01](#r-v-01), [RV-01](#r-rv-01), [RV-02](#r-rv-02) |
+| <a id="r-vm-02"></a>**VM-02** · Follow-up | Long memory in volume remains after intraday seasonality and changes in its local mean are removed. | Fit seasonal short-memory, segmented short-memory and fractional-memory models on the same past data. Require a stable fractional estimate across subperiods and better 1 h/1 day forecast loss than the segmented model. Allow 0 < d < 0.5 to coexist with return to a finite mean. | Same-venue one-minute volume | Proposed from V-02, V-03 and LOG §11.1. [V-02](#r-v-02), [V-03](#r-v-03), [V-07](#r-v-07) |
+| <a id="r-vm-03"></a>**VM-03** · Follow-up | Extreme participation overshoots to the opposite side of normal more often than ordinary decay would predict. | Start on top/bottom-decile deseasonalised log volume. Compare probability of entering the opposite quintile within 1 h with simulations from a fitted non-oscillatory persistence model, matching starting extremity. Use disjoint windows. | One-minute volume | Proposed from V-04 and RV-07. [V-02](#r-v-02), [V-04](#r-v-04), [RV-07](#r-rv-07) |
+| <a id="r-vm-04"></a>**VM-04** · Follow-up | Recent participation improves prediction of the next high-volume onset, while elapsed spell age separately predicts its end. | Define onset at the past 90th seasonal percentile and exit after two bars below the 75th. Estimate two hazards on their own risk sets. Compare 15/60 min Brier scores with an hour-of-week onset baseline and a constant-exit-hazard baseline, handling censoring. | One-minute volume and valid observation intervals | Proposed from V-05 and V-06. [V-05](#r-v-05), [V-06](#r-v-06) |
+
+## Earlier research in this category
+
+### Historical study rows
+
+Source wording is retained below. A bare ID inside quoted study text refers to the older log. NB, HYP, NOTE and PREV are defined in the source guide.
+
+| Historical ID | Source question or run | Source test | Reported result | Source assessment | Evidence code |
+| --- | --- | --- | --- | --- | --- |
+| <a id="r-log-v-01"></a>**LOG/V-01** | Volume is roughly lognormal; gold is the exception | Distribution tables per asset and per year (`volume_basics`) | Your note: holds for every asset except gold. Still open: is gold the exception for more of the market, and do the distributions change by year? | Supported in the source test | NOTE |
+| <a id="r-log-v-02"></a>**LOG/V-02** | Volume is mean reverting | Chunk means, mean crossings against a sine curve, proper tests (`volume_meanrev`) | Your notes disagree. Section summary: "roughly mean reverting". Test cell: "No, but it has lots of memory" and "yes and no, long and short memory". More mean crossings than a sine curve. | Weak or mixed | NOTE |
+| <a id="r-log-v-03"></a>**LOG/V-03** | The volume mean drifts over time | Means of 10, 100 and 1,000 chunks | Yes. It swings both ways, with a long-term downtrend. | Supported in the source test | NOTE |
+| <a id="r-log-v-27"></a>**LOG/V-27** | Corrected for dollar volume, is the volume going up or down over time? | Slope of log daily dollar volume, and of coin volume, on time (30-day blocks); table by year. `hyp_volume` | Down. Dollar volume falls about 10% a year pooled (-0.11 log a year, z -2.9): robust on 4 of 6 coins, up only on SOL (2024 and 2025 were about 3 times 2021). Coin volume falls about 23% a year (-0.26, z -12.6, 6 of 6). 2026 dollar volume is 0.07 to 0.41 of 2021 on five coins and 1.22 on SOL. | Supported in the source test | HYP |
+
+### Earlier proposals and unnumbered ideas
+
+| Historical ID | Question | Original comparison or inputs | Status / provenance |
+| --- | --- | --- | --- |
+| <a id="r-log-idea-07"></a>**LOG-IDEA/07** | What happens between "significantly smaller volumes"? |  | Open in source · Pasted text(20261124-205427).txt §12A |
+| <a id="r-log-idea-11"></a>**LOG-IDEA/11** | Is gold the exception for more of the market? Do the distributions differ by year? |  | Open in source · Pasted text(20261124-205427).txt §12A |
+| <a id="r-log-idea-12"></a>**LOG-IDEA/12** | Long and short memory: fractional d (GPH or local Whittle), DFA Hurst exponent, autocorrelation at 1 hour, 1 day and 1 week. |  | Open in source · Pasted text(20261124-205427).txt §12A |
+
