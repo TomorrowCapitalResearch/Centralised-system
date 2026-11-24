@@ -1,87 +1,91 @@
-
 ## Volume
+
+> Results: `volume_hypotheses.ipynb`, run on **ASSET** (binance 1-min, 2021–2026). The Result column holds the verdict, then the key numbers. The Status column keeps the prior expectation. q = Benjamini–Hochberg-adjusted p across all tests. ⚠ marks verdicts where the label hides something important.
 
 ### Baseline volume ideas
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| V-01 | Volume is roughly lognormal distributed | . | Partially Supported | expected true | . |
-| V-02 | Volume is mean reverting | . | Partly supported (reverts to a moving mean only) | expected vague | . |
-| V-03 | Volume is has long memory? | . | Supported | expected vague | . |
-| V-04 | Periods of lower than usual volume follows periods of higher than usual volume and vice versa | . | Not supported (volume regimes persist) | expected true | . |
-| V-05 | One can with reasonable certainty estimate a "half-life" or "time until" next high volume period | . | Not supported (close to memoryless / clustered) | expected true | . |
-| V-06 | One can with reasonable certainty estimate a "half-life" or "longevity expectation" for a high volume period | . | Partly supported (half-life estimable, durations dispersed) | expected true | . |
-| V-07 | The volume mean drifts over time | . | Supported | expected true | . |
-| V-08 | Periods with increasing volume mean have more positive returns than negative returns? | . | Not supported | unknown | . |
-| V-09 | Periods with decreasing volume mean have more negative returns than positive returns? | . | Not supported | unknown | . |
-| V-10 | Low volume goes with negative returns | . | Not supported | expected vague or untrue | . |
-| V-11 | High volume goes with high absolute return | . | Supported | expected true | .|
-| V-12 | Low volume goes with low absolute return | . | Supported | expected true | . |
-| V-13 | Given the previous 2 years mean volume as the current expected mean volume, if the current month/year has lower than expected mean volume, the returns in this period should have a smaller absolute size than the returns in the previous years with higher volume. | . | Supported | unknown | . |
-| V-14 | Given the previous 2 years mean volume as the current expected mean volume, if the current month/year has lower than expected mean volume, the rolling relative volatility of prices should be higher than in the previous period. The direction of prices over the period should also be more "stable", as in going in the same downwards or upwards direction but with jumps and shakes rather than swings. | . | Not Supported | unknown | . |
-| V-15 | If the notional volume is decreasing over time, does the absolute return sizes decrease? | . | . |  |  |
-| V-16 | Corrected for dollar volume, does lower dollar volume periods mean higher likelihood of negative returns? | . | . | . | . |
+| V-01 | Volume is roughly lognormal distributed | AIC ranking of lognormal/gamma/Weibull/exponential on daily and de-seasonalised hourly volume; skew/kurtosis of log volume | **Partly supported**. Lognormal fits best on both, but log volume is right-skewed (skew ≈ 0.5) | expected true | Clark (1973) |
+| V-02 | Volume is mean reverting | ADF on daily log volume (level) and on its deviation from the trailing 90d mean; AR(1) half-life | **Partly supported**. Reverts to a *moving* mean only (ADF level p = 0.28, deviation p = 1.7e-5); half-life ≈ 1.4 days | expected vague | . |
+| V-03 | Volume is has long memory? | DFA Hurst on de-seasonalised hourly log volume; ACF at 24/168/720h; power-law vs exponential ACF decay | **Supported**. DFA α = 0.98; ACF 0.78 / 0.73 / 0.66 at 1d / 1w / 1m; power-law decay fits better (R² 0.96 vs 0.83) | expected vague | Lobato & Velasco (2000); Bollerslev & Jubinski (1999) |
+| V-04 | Periods of lower than usual volume follows periods of higher than usual volume and vice versa | Tercile transitions of 5/10/20-day block means of log volume vs trailing 365d mean | **Not supported, volume regimes persist**. P(high → high) ≈ 0.76; P(high → low) only 0.03–0.09 | expected true | . |
+| V-05 | One can with reasonable certainty estimate a "half-life" or "time until" next high volume period | Episodes = log-volume z > 1.5; waiting-time CV and Weibull shape | **Not supported, clustered and close to memoryless**. Median wait 9 days / 10 hours, CV 1.2–1.6, Weibull k ≈ 0.8 (< 1 = clustered) | expected true | . |
+| V-06 | One can with reasonable certainty estimate a "half-life" or "longevity expectation" for a high volume period | Episode duration CV/Weibull; half-life of mean z decay after episode start | **Partly supported**. Half-life is estimable (4.5 days daily, 9.3h hourly), but durations are dispersed (CV 0.65–1.1) | expected true | . |
+| V-07 | The volume mean drifts over time | KPSS on daily log volume; Kruskal–Wallis across years; range of yearly means | **Supported**. KPSS p = 0.01; yearly mean volume varies 6.5× across years | expected true | . |
+| V-08 | Periods with increasing volume mean have more positive returns than negative returns? | Days where the 30d mean log volume rose over 5 days: P(return > 0), same/next day | **Not supported**. P(up) = 0.477 (n = 999), p = 0.16 | unknown | . |
+| V-09 | Periods with decreasing volume mean have more negative returns than positive returns? | Days where the 30d mean log volume fell: P(return < 0) | **Not supported**. P(down) = 0.489 (n = 1118), p = 0.49 | unknown | . |
+| V-10 | Low volume goes with negative returns | Hourly, seasonally adjusted relative volume < 1 vs ≥ 1: P(ret < 0), HAC mean | **Not supported, ⚠ slightly opposite**. P(neg \| low) 0.491 vs 0.504; low-volume hours have a *positive* mean return (HAC t = 5.5) | expected vague or untrue | . |
+| V-11 | High volume goes with high absolute return | Hourly Spearman(relvol, \|ret\|); top quintile mean \|ret\| / overall | **Supported**. ρ = 0.44; top quintile \|ret\| is 2.0× the average | expected true | Karpoff (1987) |
+| V-12 | Low volume goes with low absolute return | Bottom relvol quintile mean \|ret\| / overall | **Supported**. Bottom quintile \|ret\| is 0.43× the average | expected true | . |
+| V-13 | Given the previous 2 years mean volume as the current expected mean volume, if the current month/year has lower than expected mean volume, the returns in this period should have a smaller absolute size than the returns in the previous years with higher volume. | Months with volume below the prior 24m mean: share with mean \|daily ret\| below the prior 24m | **Supported, ⚠ but not volume-specific**. 32/47 low-volume months are calmer (0.68, p = 0.02), but so are 8/12 high-volume months (0.67). Volatility fell over the sample in general | unknown | . |
+| V-14 | Given the previous 2 years mean volume as the current expected mean volume, if the current month/year has lower than expected mean volume, the rolling relative volatility of prices should be higher than in the previous period. The direction of prices over the period should also be more "stable", as in going in the same downwards or upwards direction but with jumps and shakes rather than swings. | Low-volume months: daily SD vs prior 24m; efficiency ratio and hourly kurtosis vs high-volume months | **Not supported, ⚠ opposite on volatility**. SD higher in only 12/47 low-volume months (p = 0.001); efficiency ratio (0.19 vs 0.21) and kurtosis show no difference | unknown | . |
+| V-15 | If the notional volume is decreasing over time, does the absolute return sizes decrease? | Monthly Spearman of Δlog dollar volume vs Δlog mean \|daily ret\| (1m and 12m changes) | **Supported (yes)**. ρ = 0.71 for monthly changes (p = 6e-12), 0.30 for 12m changes | . | . |
+| V-16 | Corrected for dollar volume, does lower dollar volume periods mean higher likelihood of negative returns? | Daily dollar volume / trailing 30d mean, quintiles: P(ret < 0), bottom quintile vs rest | **Not supported, ⚠ opposite**. Low-dollar-volume days are *less* often down: 0.438 vs 0.521 (p = 0.002); next day 0.492 | . | . |
 
 ### Rolling volume ideas
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| RV-01 | Rolling sum of volume is lognormal distributed | . | . | expected true | . |
-| RV-02 | Rolling mean of volume is also lognormal distributed | . | . | expected true | . |
-| RV-03 | Rolling sum of volume can help predict the future realised volatility | . | . | expected true | . |
-| RV-04 | Rolling mean of volume can help predict the future realised volatility | . | . | expected true | . |
-| RV-05 | if the current volume is above the rolling mean of volume, it correlates with a higher than usual realised volatility | . | . | expected true | . |
-| RV-06 | if the current volume is below the rolling mean of volume, it correlates with a lower than usual realised volatility | . | . | expected true | . |
-| RV-07 | if the current rolling mean of volume is significantly higher than the expected rolling mean of volume, than a period of below the expected rolling mean of volume should occur after. | . | . | expected true | . |
-| RV-08 | the rolling volume profile can help understand trends and reversions | . | . | expected too vague | . |
-| RV-09 | A range say something like 10 out of 15( 20 out of 30, etc.) of "below average" volume indicates a period of lower than usual absolute returns | . | . | . | . |
+| RV-01 | Rolling sum of volume is lognormal distributed | Distribution AIC ranking on the 24h rolling sum | **Partly supported**. Lognormal fits best; log-skew 0.54 | expected true | . |
+| RV-02 | Rolling mean of volume is also lognormal distributed | Same on the 7-day rolling mean (same shape as a sum for a fixed window) | **Partly supported**. Lognormal fits best; log-skew 0.81 | expected true | . |
+| RV-03 | Rolling sum of volume can help predict the future realised volatility | Out-of-sample R² of next-24h log RV: HAR(24h, 168h RV) vs + 24h volume terms | **Not supported**. No gain over HAR (R² 0.407 → 0.406). Past volatility already carries the information | expected true | Andersen (1996) |
+| RV-04 | Rolling mean of volume can help predict the future realised volatility | Same with the 168h rolling mean of volume | **Not supported**. R² 0.407 → 0.404 | expected true | . |
+| RV-05 | if the current volume is above the rolling mean of volume, it correlates with a higher than usual realised volatility | Hourly P(RV above usual \| volume above usual) vs unconditional | **Supported**. 0.80 vs 0.38 (+42pp); next hour 0.67 | expected true | . |
+| RV-06 | if the current volume is below the rolling mean of volume, it correlates with a lower than usual realised volatility | Hourly P(RV below usual \| volume below usual) vs unconditional | **Supported**. 0.85 vs 0.62 (+23pp) | expected true | . |
+| RV-07 | if the current rolling mean of volume is significantly higher than the expected rolling mean of volume, than a period of below the expected rolling mean of volume should occur after. | After the 7d-mean volume z crosses > 2: P(z < 0 within 30 days) vs baseline days | **Not supported**. 0.74 after spikes vs 0.93 baseline (23 events). High volume persists | expected true | . |
+| RV-08 | the rolling volume profile can help understand trends and reversions | Every 24h: P(next 24h same sign as past 24h), volume rising vs falling | **Not supported**. 0.475 vs 0.488, p = 0.54 | expected too vague | . |
+| RV-09 | A range say something like 10 out of 15( 20 out of 30, etc.) of "below average" volume indicates a period of lower than usual absolute returns | Hourly: ≥ 10 of the last 15 (and 20/30) hours below average volume → next \|ret\| vs its 30d mean | **Supported**. Next hour 0.82× vs 1.28× otherwise; next 15h 0.86× vs 1.23× | . | . |
 
 ### Time volume ideas
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| VT-01 | Volume is seasonal within the day and the week |  |  |  |
-| VT-02 | US Open hour has a significant increase in volume |  |  |  |
-| VT-03 | US Close hour has a significant decrease in volume |  |  |  |
-| VT-04 | Weekends have significantly lower volume |  |  |  |
-| VT-05 | nights have significantly lower volume|  |  |  |
-| VT-06 | Corrected for dollar volume, is the volume going up or down over time? | . | . | . | . |
+| VT-01 | Volume is seasonal within the day and the week | Kruskal–Wallis of volume / centred 7d mean by hour-of-day and day-of-week | **Supported**. Hour-of-day max/min 2.2× (peak 14h UTC, trough 4h); day-of-week 1.9× (peak Mon, trough Sat) | . | Admati & Pfleiderer (1988) |
+| VT-02 | US Open hour has a significant increase in volume | 09:30–10:30 NY volume / day's average hour (weekdays) | **Supported**. 1.85× the average hour, 1.57× the hour before | . | . |
+| VT-03 | US Close hour has a significant decrease in volume | 15:00–16:00 NY volume / day's average hour; vs the hours before and after | **Not supported, ⚠ the drop comes after the close**. Close hour 0.89× the average hour and ≈ the hour before; the hour after the close is 0.77× the close hour | . | . |
+| VT-04 | Weekends have significantly lower volume | Weekend day / mean of the previous 5 weekdays | **Supported**. Median 0.52× | . | . |
+| VT-05 | nights have significantly lower volume | Mean hourly volume 00–06 UTC / rest of day | **Supported**. Median 0.78× | . | . |
+| VT-06 | Corrected for dollar volume, is the volume going up or down over time? | Kendall τ and HAC slope of monthly log dollar (and base) volume | **Down**. Dollar volume −14%/yr (p = 7e-5); base volume falling faster (−0.35 log/yr) | . | . |
 
 ### Volume price memory ideas
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| VP-01 | High-volume prices are revisited | . | . | . |
-| VP-02 | A large negative return occurring with low volume will have the price return to the pre-jump price within 3 days | . | . | . | . |
-| VP-03 | A price range(say central price +/- 1%), with an exceptionally higher than usual rolling mean of volume and rolling sum of value. are more likely to be revisited within 3 days. | . | . | . |
-| VP-04 | A sudden jump or drop in prices with a significantly lower than usual rolling mean and rolling sum of volume, is more than 50% likely to give back part of the jump or drop within 1 hour. | . | . | . |
-| VP-10 | A high-volume tight range(returns over the range staying within +/-0.5% from the start price of the range) has a higher than 50% chance of being followed by a low-volume drop or low-volume jump. Say max of 30 minute windows for the range.  | . | . | . | . |
-| VP-11 | Absorption bars (very high volume, small move) that conclude with a jump or drop on high volume, have a higher than 50% chance of continuing. Say absorption bars can be up to the 30 minute window again. | . | . | . | . |
-| VP-12 | Yesterday's point of control(very heavy volume, price area) is a magnet today? | . | . | . | . |
-| VP-12 | Yesterday's point of control(very heavy volume, price area) is ONLY a magnet today if today's volume is below average | . | . | . | . |
-| VP-13 | Fair-value-gap midpoints get filled, low-volume gaps more often | . | . | . | . |
-| VP-14 | Busy price areas (30-day volume at price) are revisited more than quiet ones at the same distance | . | . | . | . |
-| VP-15 | volume weighted moving average prices generally have lower error from realised prices than simple moving averages| . | . | . | . |
-| VP-16 | the rolling(window 30 minutes) of volume * return indicator predicts direction as "future direction is the same as sign of the indicator", does this work for 1,5,10 minutes ahead ? | . | . | . | . |
-| VP-17 | the sign of the (rolling(window 30 minutes) of volume * return - moving average of the same) indicator predicts direction as "future direction is the same as sign of the indicator", does this work for 1,5,10 minutes ahead ? | . | . | . | . |
-| VP-18 | sign(Σ volume × return) predicts direction | . | . | . | . |
-| VP-19 | An action principle for prices, with volume as mass or attention weight, along with returns as the returns on different points of a particle, can help predict direction of the next 1, 5, 10 minutes return. | . | . | . | . |
-| VP-20 | When volume-weighted flow is balanced, price converges to VWAP | . | . | . | . |
-| VP-21 | Net taker buying predicts the next return direction | . | . | . | . |
-| VP-22 | When flow and price disagree, the next move follows the flow | . | . | . | . |
+| VP-01 | High-volume prices are revisited | 1-day volume profile: top-10% vs bottom-10% bins, touched within 3 days; logit with distance control | **Not supported (borderline)**. Odds ratio 1.14 at the same distance, p = 0.05 | . | . |
+| VP-02 | A large negative return occurring with low volume will have the price return to the pre-jump price within 3 days | 15-min drops < q0.1%: recovered within 3 days, low vs high relative-volume tercile | **Supported**. Low-volume drops recover 93% vs 71% for high-volume drops (471 events, p = 3e-7) | . | . |
+| VP-03 | A price range(say central price +/- 1%), with an exceptionally higher than usual rolling mean of volume and rolling sum of value. are more likely to be revisited within 3 days. | Hour VWAP ±1%: after exit, back to centre within 3 days; high-volume hours (≥ q95) vs ordinary hours | **Supported (small effect)**. 0.80 vs 0.78, q = 0.02 | . | . |
+| VP-04 | A sudden jump or drop in prices with a significantly lower than usual rolling mean and rolling sum of volume, is more than 50% likely to give back part of the jump or drop within 1 hour. | 5-min jumps > q99.5: retrace ≥ 25% / 50% within 60 min, low-volume vs others | **Supported**. 88% give back ≥ 25%, 74% give back ≥ 50%. ⚠ Other jumps also retrace (84% / 66%) | . | . |
+| VP-10 | A high-volume tight range(returns over the range staying within +/-0.5% from the start price of the range) has a higher than 50% chance of being followed by a low-volume drop or low-volume jump. Say max of 30 minute windows for the range.  | 30-min tight bar with relvol > 1.5 → next bar \|ret\| > q90 with relvol < 1 | **Not supported**. 0.1% vs 2.0% base rate. Breakouts after tight high-volume ranges come on *high* volume | . | . |
+| VP-11 | Absorption bars (very high volume, small move) that conclude with a jump or drop on high volume, have a higher than 50% chance of continuing. Say absorption bars can be up to the 30 minute window again. | Absorption 30m bar → first 5m high-volume jump: P(next 30 min same sign) | **Not supported**. 0.475 (n = 177); all high-volume 5m jumps continue only 0.455 | . | . |
+| VP-12 | Yesterday's point of control(very heavy volume, price area) is a magnet today? | Touch rate of yesterday's POC vs the same distance mirrored through today's open (McNemar) | **Not supported (borderline)**. 0.600 vs 0.566, p = 0.056 | . | . |
+| VP-12 | Yesterday's point of control(very heavy volume, price area) is ONLY a magnet today if today's volume is below average | Same, split by today's volume vs trailing 30d mean | **Supported**. Low-volume days 0.619 vs 0.524 (p = 2e-5); high-volume days no effect (0.574 vs 0.619) | . | . |
+| VP-13 | Fair-value-gap midpoints get filled, low-volume gaps more often | 5m FVGs ≥ 0.05%: midpoint filled within 1 day; logit with gap-size control | **Supported**. 93% filled; low-volume gaps more (odds ratio 1.27, p = 2e-9) | . | . |
+| VP-14 | Busy price areas (30-day volume at price) are revisited more than quiet ones at the same distance | 30-day profile, top vs bottom 10% bins, touched within 5 days; logit with distance control | **Supported**. Odds ratio 1.54 at the same distance (p = 1e-10); raw 0.42 vs 0.19 | . | . |
+| VP-15 | volume weighted moving average prices generally have lower error from realised prices than simple moving averages| MAE vs future close, windows 20/60/240, h = 0–60 min; HAC test | **Supported**. VWMA beats SMA in 15/15 cells. ⚠ The last close beats both for every h ≥ 1 | . | . |
+| VP-16 | the rolling(window 30 minutes) of volume * return indicator predicts direction as "future direction is the same as sign of the indicator", does this work for 1,5,10 minutes ahead ? | Hit rate of sign(30m Σ vol·ret) vs next 1/5/10-min return | **Not supported, predicts reversal**. Hit 0.490 / 0.480 / 0.479 | . | . |
+| VP-17 | the sign of the (rolling(window 30 minutes) of volume * return - moving average of the same) indicator predicts direction as "future direction is the same as sign of the indicator", does this work for 1,5,10 minutes ahead ? | Same, indicator minus its 60-min MA | **Not supported, weak reversal**. Hit 0.494 / 0.488 / 0.488 | . | . |
+| VP-18 | sign(Σ volume × return) predicts direction | Grid: windows 5/15/60/240 × horizons 1/5/10/30 | **Not supported, reversal**. 16/16 cells significantly < 0.5 (0.478–0.496) | . | . |
+| VP-19 | An action principle for prices, with volume as mass or attention weight, along with returns as the returns on different points of a particle, can help predict direction of the next 1, 5, 10 minutes return. | Euler–Lagrange m(v′ − v) = −k(x − VWAP240) − γv, m = relative volume; fitted on the first 70%, scored out of sample; control m = 1 | **Not supported**. Hit 0.491 / 0.504 / 0.504; the m = 1 version does better (0.507 / 0.511 / 0.515), so volume-as-mass adds nothing | . | . |
+| VP-20 | When volume-weighted flow is balanced, price converges to VWAP | Δ\|price − VWAP240\| over 30 min, balanced vs imbalanced taker flow | **Not supported**. Balanced flow drifts away slightly more (+3.9bp vs +2.3bp) | . | . |
+| VP-21 | Net taker buying predicts the next return direction | Hit rate of sign(taker imbalance 1/5/15m) vs next 1/5/10-min return | **Not supported, weak reversal**. Hit 0.484–0.503 | . | Chordia & Subrahmanyam (2004) |
+| VP-22 | When flow and price disagree, the next move follows the flow | sign(15m imbalance) ≠ sign(15m return) → next 15m follows flow? | **Weak**. 0.510 (n = 59,612, p = 2e-6) vs 0.473 when they agree. Significant but tiny | . | . |
 
 ### Volume & Trend ideas
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| VTR-01 | Moves come with recognisable volume profiles before, during and after | . | . | . | . |
-| VTR-02 | A downwards price trend is highly likely to have the "high, low, extra high" volume profile in first third, middle and last third of the trend.  | . | . | . |
-| VTR-02 | An upwards price trend is highly likely to have either the "high, low, extra high" volume profile in first third, middle and last third of the trend. or the "high, higher, highest" volume profile. | . | . | . |
+| VTR-01 | Moves come with recognisable volume profiles before, during and after | Event-time relative volume around \|60m ret\| > q99.9 moves vs random times | **Supported**. Before 1.03× vs 0.82×; during 2.59×; first hour after 2.58×. Volume stays high after the move (143 moves) | . | . |
+| VTR-02 | A downwards price trend is highly likely to have the "high, low, extra high" volume profile in first third, middle and last third of the trend.  | 5% zigzag legs on hourly closes: v2 < v1 < v3 in thirds (chance 1/6) | **Partly supported**. 26.5% of 219 down legs: above chance (p = 2e-4) but far from "highly likely" | . | . |
+| VTR-02 | An upwards price trend is highly likely to have either the "high, low, extra high" volume profile in first third, middle and last third of the trend. or the "high, higher, highest" volume profile. | Up legs: either pattern (chance 2/6) | **Not supported**. 36.7% of 218 up legs (p = 0.16) | . | . |
 
 ### Volume additional ideas
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| VA-01 | 30-day breakouts continue more when volume is stronger than on the first leg, or ramping in | . | . | . | |
-| VA-02 | high volume Downtrend or a high-volume jump down, and then any price behavior with ordinary volume, should lead to continuation | . | . | . | |
-| VA-03 | high volume Downtrend or a high-volume jump down, and then any price behavior with high volume, should lead to reversal | . | . | . | |
-| VA-04 | After a jump down, another one jump down is more likely than usual if the volume is significantly above average | . | . | . | . |
-| VA-06 | a "normal distributed" volume distribution( as in increasing until the peak of the drop, decreasing after the drop returns normalise) with a drop in price "lands" where the volume drops down, the accumulation distribution indicator helps here | . | . | . | . |
-| VA-07 | The slope of the Accumulation distribution indicator correlates with the returns. Low ACC DIST correlates with a drop in the current price to relative value. Meaning price will reverse | . | . | . | . |
-| VA-08 | a range of continuously growing volumes, than 1 or 2 decreasing volume, than 1 growing is the sign of a "settled level". Meaning the prices will either increase/decrease until that decreasing volume and than reverse a bit on that next growing volume. | . | . | . | . |
+| VA-01 | 30-day breakouts continue more when volume is stronger than on the first leg, or ramping in | Hourly 30-day breakouts: P(next 24h in breakout direction), strong/ramping volume vs not | **Supported, ⚠ fragile**. 0.49 vs 0.10, but only 10 weak-volume breakouts, and strong ones still continue < 50% | . | |
+| VA-02 | high volume Downtrend or a high-volume jump down, and then any price behavior with ordinary volume, should lead to continuation | High-volume hourly drops; next 6h volume bottom tercile → P(next 24h < 0) | **Not supported**. 0.46 vs 0.47 after high follow-up volume | . | |
+| VA-03 | high volume Downtrend or a high-volume jump down, and then any price behavior with high volume, should lead to reversal | Same events; next 6h volume top tercile → P(next 24h > 0) | **Not supported** (notebook said "partly"). 0.53 vs 0.54 after ordinary volume, p = 0.78. Reversal is no more likely | . | Campbell, Grossman & Wang (1993) |
+| VA-04 | After a jump down, another one jump down is more likely than usual if the volume is significantly above average | Hourly ret < q2: another within 24h, trigger relvol > 2 vs not, vs unconditional | **Partly supported, clustering but not volume-specific**. 0.47 (high volume) vs 0.50 (others) vs 0.28 unconditional | . | . |
+| VA-06 | a "normal distributed" volume distribution( as in increasing until the peak of the drop, decreasing after the drop returns normalise) with a drop in price "lands" where the volume drops down, the accumulation distribution indicator helps here | Large 60m drops: \|t(low) − t(volume normalises)\| ≤ 15 min vs uniform null (0.125) | **Not supported**. 0.14 vs 0.125. The low sits nearer the volume *peak* (27 min) than the normalisation (40 min) | . | . |
+| VA-07 | The slope of the Accumulation distribution indicator correlates with the returns. Low ACC DIST correlates with a drop in the current price to relative value. Meaning price will reverse | Chaikin money flow (60m) vs same-window/next-60m return; P(up next 60m \| CMF z < −2) | **Supported**. ρ = 0.57 with the same-window return; after very low A/D, P(up next 60m) = 0.553 (n = 1209, p = 2e-4) | . | . |
+| VA-08 | a range of continuously growing volumes, than 1 or 2 decreasing volume, than 1 growing is the sign of a "settled level". Meaning the prices will either increase/decrease until that decreasing volume and than reverse a bit on that next growing volume. | 5m bars: pattern → last bar moves against the prior direction, vs same-length baseline | **Not supported**. 0.456 / 0.486 vs baseline 0.519 / 0.521. It continues rather than reverses | . | . |
 
-
+### Summary
+- **Holds:** volume and volatility move together (V-11/12, RV-05/06/09); volume is seasonal (VT-01/02/04/05); volume has long memory and its regimes persist (V-03, V-04); low-volume drops get recovered (VP-02); low-volume gaps fill more often (VP-13); busy 30-day price areas get revisited (VP-14); yesterday's POC acts as a magnet on low-volume days (VP-12b); very low A/D leads to a bounce (VA-07).
+- **Opposite of the expectation:** short-horizon volume × return and taker-flow signals predict **reversal**, not continuation (VP-16–21); low-volume periods are, if anything, *up* days (V-10, V-16); volume spikes are followed by more high volume, not less (RV-07, V-05).
+- **Volume adds nothing over price:** forecasting realised volatility (RV-03/04), the action principle (VP-19), and the "settled level" volume pattern (VA-08).
