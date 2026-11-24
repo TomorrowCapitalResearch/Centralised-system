@@ -4,20 +4,20 @@
 ### Baseline volume ideas
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| V-01 | Volume is roughly lognormal distributed | . | . | expected true | . |
-| V-02 | Volume is mean reverting | . | . | expected vague | . |
-| V-03 | Volume is has long memory? | . | . | expected vague | . |
-| V-04 | Periods of lower than usual volume follows periods of higher than usual volume and vice versa | . | . | expected true | . |
-| V-05 | One can with reasonable certainty estimate a "half-life" or "time until" next high volume period | . | . | expected true | . |
-| V-06 | One can with reasonable certainty estimate a "half-life" or "longevity expectation" for a high volume period | . | . | expected true | . |
-| V-07 | The volume mean drifts over time | . | . | expected true | . |
-| V-08 | Periods with increasing volume mean have more positive returns than negative returns? | . | . | unknown | . |
-| V-09 | Periods with decreasing volume mean have more negative returns than positive returns? | . | . | unknown | . |
-| V-10 | Low volume goes with negative returns | . | . | expected vague or untrue | . |
-| V-11 | High volume goes with high absolute return | . | . | expected true | .|
-| V-12 | Low volume goes with low absolute return | . | . | expected true | . |
-| V-13 | Given the previous 2 years mean volume as the current expected mean volume, if the current month/year has lower than expected mean volume, the returns in this period should have a smaller absolute size than the returns in the previous years with higher volume. | . | . | unknown | . |
-| V-14 | Given the previous 2 years mean volume as the current expected mean volume, if the current month/year has lower than expected mean volume, the rolling relative volatility of prices should be higher than in the previous period. The direction of prices over the period should also be more "stable", as in going in the same downwards or upwards direction but with jumps and shakes rather than swings. | . | . | unkown | . |
+| V-01 | Volume is roughly lognormal distributed | . | Partially Supported | expected true | . |
+| V-02 | Volume is mean reverting | . | Partly supported (reverts to a moving mean only) | expected vague | . |
+| V-03 | Volume is has long memory? | . | Supported | expected vague | . |
+| V-04 | Periods of lower than usual volume follows periods of higher than usual volume and vice versa | . | Not supported (volume regimes persist) | expected true | . |
+| V-05 | One can with reasonable certainty estimate a "half-life" or "time until" next high volume period | . | Not supported (close to memoryless / clustered) | expected true | . |
+| V-06 | One can with reasonable certainty estimate a "half-life" or "longevity expectation" for a high volume period | . | Partly supported (half-life estimable, durations dispersed) | expected true | . |
+| V-07 | The volume mean drifts over time | . | Supported | expected true | . |
+| V-08 | Periods with increasing volume mean have more positive returns than negative returns? | . | Not supported | unknown | . |
+| V-09 | Periods with decreasing volume mean have more negative returns than positive returns? | . | Not supported | unknown | . |
+| V-10 | Low volume goes with negative returns | . | Not supported | expected vague or untrue | . |
+| V-11 | High volume goes with high absolute return | . | Supported | expected true | .|
+| V-12 | Low volume goes with low absolute return | . | Supported | expected true | . |
+| V-13 | Given the previous 2 years mean volume as the current expected mean volume, if the current month/year has lower than expected mean volume, the returns in this period should have a smaller absolute size than the returns in the previous years with higher volume. | . | Supported | unknown | . |
+| V-14 | Given the previous 2 years mean volume as the current expected mean volume, if the current month/year has lower than expected mean volume, the rolling relative volatility of prices should be higher than in the previous period. The direction of prices over the period should also be more "stable", as in going in the same downwards or upwards direction but with jumps and shakes rather than swings. | . | Not Supported | unknown | . |
 | V-15 | If the notional volume is decreasing over time, does the absolute return sizes decrease? | . | . |  |  |
 | V-16 | Corrected for dollar volume, does lower dollar volume periods mean higher likelihood of negative returns? | . | . | . | . |
 
