@@ -1,7 +1,7 @@
 
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| T-01 | Asset Longevity has an impact(however it may be minor) on price stability | . | β = -0.379 (SE 0.040, one-sided p = 8.31e-22); doubling an asset's age changes its vol by -23.1%. Fama–MacBeth mean ρ(age, vol) = -0.81 (NW t = -33.10, 24 months, 6 assets). | proved | notebook test |
+| T-01 | Asset Longevity has an impact(however it may be minor) on price stability | . | β = -0.379 (SE 0.040, one-sided p = 8.31e-22); doubling an asset's age changes its vol by -23.1%. Fama–MacBeth mean ρ(age, vol) = -0.81 (NW t = -33.10, 24 months, 6 assets). | Unresloved | notebook test |
 | T-02 | There are specific hour+day combinations with higher/lower average absolute returns than others. Could this be the weekends or middle of the night? |  .  | Significant in 6/6 assets. Weekend/weekday |ret| ratio median 0.76 (lower in 6/6); night(00–06 UTC)/rest 0.76 (lower in 6/6). Highest cells: Wed 14h (1.44×), Mon 14h (1.40×), Fri 14h (1.37×). Lowest: Sun 03h (0.66×), Sun 04h (0.68×), Sat 04h (0.68×). | proved | notebook tests |
 | T-03 | Does the US Open have a higher volume than the rest of the hours on average? |  . | Open-hour volume is 2.86× the other hours (median), significant in 6/6 assets; median rank of the open hour 1/24 (most common peak 09:30 ET). Volume follows the NY clock through DST in 6/6 assets. | proved | notebook tests |
 | T-04 | Is volume seasonal to the hour of the day, day of the week, day of the month? | . | HOD: significant in 6/6 (Proved), peak-to-trough 2.81×; DOW: significant in 6/6 (Proved), peak-to-trough 1.72×; DOM: significant in 0/6 (Disproved), peak-to-trough 1.27× | partially proved | notebook test |
