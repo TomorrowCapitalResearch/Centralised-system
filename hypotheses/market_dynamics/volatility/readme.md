@@ -51,10 +51,3 @@ The following source IDs are indexed under this category in [Alpha_and_model_car
 
 ALPHA/V1, ALPHA/H2, ALPHA/E02, ALPHA/E13, ALPHA/E23
 
-## Add a hypothesis
-
-| ID | Hypothesis | Test / benchmark | Result | Status | Source |
-| --- | --- | --- | --- | --- | --- |
-| New unique ID | One claim that could fail | Observable trigger at t, target horizon, comparison group, effect measure |  | Proposed | Author, parent ID or source row |
-
-When recording a run, add the date, dataset and universe, independent dates/events, effect and interval, and any competing outcome. For a revised definition, give the variant a suffix and retain the earlier result.
