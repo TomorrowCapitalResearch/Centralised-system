@@ -1,14 +1,14 @@
 
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| T-01 | . | . | . | Unresloved | notebook test |
-| T-02 | . | . | . | Proved | notebook tests |
-| T-03 | . |  . | . | Proved | notebook tests |
-| T-04 | . | . | . | partially proved | notebook test |
-| T-05 | . | . | . | Disproved | notebook test |
-| T-06 | . | . | 	. | Disproved| notebook test |
-| T-07 | . | . | . | Disproved | notebook test |
-| T-08 | . | . | . | Unresolved | notebook test |
-| T-09 | . | . | . | Proved | notebook test |
-| T-10 | . | . | . | Proved | notebook test |
-| T-11 | . | . | . | Proved | notebook test |
+| T-01 | . | . | β = -0.127 (SE 0.152, one-sided p = 0.202); doubling an asset's age changes its vol by -8.4%. Fama–MacBeth mean ρ(age, vol) = -0.23 (NW t = -9.42, 71 months, 9 assets). | Unresloved | notebook test |
+| T-02 | . | . | Significant in 9/9 assets. Weekend/weekday |ret| ratio median 0.71 (lower in 9/9); night(00–06 UTC)/rest 0.94 (lower in 9/9). Highest cells: Tue 14h (1.64×), Fri 14h (1.54×), Thu 15h (1.53×). Lowest: Sun 05h (0.66×), Sun 06h (0.66×), Sat 19h (0.68×). | Proved | notebook tests |
+| T-03 | . | . | Open-hour volume is 1.57× the other hours (median), significant in 9/9 assets; median rank of the open hour 1/24 (most common peak 09:30 ET). Volume follows the NY clock through DST in 9/9 assets. | Proved | notebook tests |
+| T-04 | . | . | HOD: significant in 9/9 (Proved), peak-to-trough 1.97×; DOW: significant in 9/9 (Proved), peak-to-trough 1.58×; DOM: significant in 2/9 (Disproved), peak-to-trough 1.33× | partially proved | notebook test |
+| T-05 | . | . | Unit root not rejected in 5/9 assets (levels are non-stationary). Price-level seasonality significant in any component for 0/9 assets (HOD 0, DOW 0, DOM 0). Median seasonal amplitude HOD 78.2 bps, DOW 98.9 bps vs a median daily move of 193 bps. | Disproved | notebook test |
+| T-06 | . | . | HOD: significant in 3/9 (Disproved); DOW: significant in 1/9 (Disproved); DOM: significant in 0/9 (Disproved). Signed-return seasonality is much weaker than volatility seasonality (T-02); check whether the effect survives costs. | Disproved| notebook test |
+| T-07 | . | . | 9/9 assets resolvable; cycle lengths more regular than bootstrap random walks in 0/9. Median cycle 170 days, CV 0.84 vs null 0.61. | Disproved | notebook test |
+| T-08 | . | . | Mean gap detectable (≥30 events, CI ±≤25%) in 9/9 assets; median mean-gap 17.3 days (typical CI 14.3–20.4). Weibull k < 1 (clustered, not memoryless) in 0/9 assets (median k = 1.03). Gaps look close to exponential (memoryless): the rate is estimable, but the timing of the next event is not predictable from the last one. | Proved | notebook test |
+| T-09 | . | . | Raw-size events: weekend share 19.0% (expected 28.6%), significantly lower in 0/9 assets; pooled 19.6% of 153 event days (p = 0.0074). Vol-scaled events: 16.7%, lower in 9/9; pooled 17.4% (p = 4e-09). If only the raw share is low, weekend calm comes from lower volatility, not from weekends suppressing shocks. | Proved | notebook test |
+| T-10 | . | . | Dollar clock beats time clock (≥2/3 metrics) in 3/4 assets. Median excess kurtosis 37.9 → 20.9; Moors 1.55 → 1.36 (normal 1.23); vol clustering 2.53 → 3.43. | Proved | notebook test |
+| T-11 | . | . | Scale-invariant (R² ≥ 0.98) in 4/4 and multifractal (Δα > shuffled) in 0/4; both in 0/4. Median Δα = 0.222 vs shuffled 0.291. Dollar-bar variance ∝ size^0.96 (R² 1.000), i.e. H ≈ 0.48 in event time, with no privileged bar size. | Disproved | notebook test |
