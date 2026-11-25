@@ -1,5 +1,10 @@
 time (done for now) \
-volume (done for now) \
+volume (done for now) \ 
+The combination of these two worked quite significantly on inventory and position sizings, taking drawdowns from 50% to just above 14%.
+
+
+
+
 volatility \
 prices \
 
