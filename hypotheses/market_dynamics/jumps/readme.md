@@ -8,10 +8,32 @@ T-08 concerns sparse major events with gaps measured in days. In a different one
 
 **Test design.** Store event size, sign, threshold source, clock, declustering rule and period at risk. Distinguish first events after quiet periods from aftershocks. Use a common event definition when comparing studies.
 
+The initial jump condition. 
+Within an T length time horizon, the absolute return within that time horizon, is more than 2 standard deviations above the mean absolute return for that time horizon.
+Say we have a window of 10 minutes, current rolling 10 minute return is above mean + 2 standard deviations of the rolling absolute return distribution for 10 minute windows within the last 1000 minutes. 
+
+
 ### Jump hypothesis
 | ID | Hypothesis | Test | Result | Status | Source |
 |---|---|---|---|---|---|
-| J1 | . | . | . | . | . |
+| J1 | return sizes are approximately lognormal distributed | . | . | Expected true | . |
+| J2 | absolute return sizes are approximately lognormal distributed | . | . | Expected true | . |
+| J3 | taking jumps to be events with absolute return sizes above 2 standard deviations of the rolling 1 day returns, the absolute return distribution is approximately log normal again | . | . | Expected true | . |
+| J4 | taking jumps to be events with absolute return sizes above 2 standard deviations of the rolling 1 day returns, the ordinary return distribution is approximately log normal again | . | . | Expected true | . |
+| J5 | Taking hypothesis J3, J4 and extending the window and horizon of the returns, say we take the absolute return size to be the sum over a window of 5 minutes, rather than a single timestep return. Similarly we do the rolling day return sums, for 5 minutes | . | . | Expected true | . |
+| J6 | Taking hypothesis J3, J4, J5 and extending the window and horizon of the returns again say we take the absolute/ordinary return size to be the sum over a window of 10 minutes, rather than a single timestep return. Similarly we do the rolling day return sums, for 10 minutes | . | . | Expected true | . |
+| J7 | Taking hypothesis J3, J4, J5, J6 and extending the window and horizon of the returns again say we take the absolute/ordinary return size to be the sum over a window of 30 minutes, rather than a single timestep return. Similarly we do the rolling day return sums, for 30 minutes | . | . | Expected true | . |
+| J8 | Jump longevities are approximately exponentially distributed? Say we take out all of the events that fit the jump condition independent of time horizons, we will see that the number of jumps that fulfill that condition should be approximately exponentially decaying, such that we have most for 1 minute, than 2 minute... so on up to 60 minutes. | . | . | Expected true | . |
+| J9 | Now calculating the time distance between jumps, saying we registered a jump and than we calculate its approximate distance until the next time we detect a jump. We want to calculate and make an empirical distribution | . | . | Expected true | . |
+| J10 | Now for the jumps we also wish to calculate a volume profile/distribution, we once again want to cut off the jumps that are more than an hour apart, we also don't care for direction. | . | . | Expected true | . |
+| J11 | We also want to calculate/determine the most likely volatility profiles between jumps. | . | . | Expected true | . |
+| J12 | For the periods just before a jump we want to determine a group of volume profiles.(does volume increase up to a jump (only ramp up or volatility increase)) | . | . | Expected true | . |
+| J13 | for periods just before a jump we want to determine a group of price return and price moving average profiles (high return, low return, close return) distances to high, low, close from the moving average... | . | . | Expected true | . |
+| J14 | for periods just before a jump we want to determine a group of spread and spread return profiles (high to low, high to close, close to low, along with their returns) do the spreads converge or diverge close to a jump, do the spreads converge downwards or upwards together as a jump approaches | . | . | Expected true | . |
+| J15 | How often does a jump give back 0.2% or more of its jump within the next 30, 60, 90 or 120 minutes of the minimum bar, say if it is a generally negative jump, after the last negative bar in continuation, how much does it give back, same for positive jumps | . | . | Expected true | . |
+| J16 | Is there a specific area of dollar values inside the jump that has a higher likelihood of a return upwards above 0.2%, say if the total amount inside the jump is between 1 million dollar and 2 million dollar, the likelihood of a reversion by or above 0.2% is 54% | . | . | Expected true | . |
+| J17 | Does a rolling slope of prices(on high low, close), returns(on high low, close) help with detecting a jump coming, if the prices/returns "start becoming outliers", say we suddenly have 1, 2, 3 outliers within a 10 minute window we are higher than 55% likely to have a jump coming up | . | . | Expected true | . |
+| J18 | Does a rolling check of low/high outliers say we suddenly have 1, 2, 3 outliers within a 30 minute window we are higher than 55% likely to have a up/down jump coming up(up ~ high outliers, down ~ low outliers) | . | . | Expected true | . |
 
 
 
