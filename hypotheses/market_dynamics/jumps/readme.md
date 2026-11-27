@@ -8,6 +8,13 @@ T-08 concerns sparse major events with gaps measured in days. In a different one
 
 **Test design.** Store event size, sign, threshold source, clock, declustering rule and period at risk. Distinguish first events after quiet periods from aftershocks. Use a common event definition when comparing studies.
 
+### Jump hypothesis
+| ID | Hypothesis | Test | Result | Status | Source |
+|---|---|---|---|---|---|
+| J1 | . | . | . | . | . |
+
+
+
 ### Your current rows
 
 | ID | Hypothesis | Test or next comparison | Reported result and scope | Assessment | Source |
